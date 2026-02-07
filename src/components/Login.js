@@ -22,8 +22,8 @@ function Login() {
         <p>Create A New Account<NavLink to="/Signup" className="login"> Sign Up</NavLink></p>
         <button onClick={toggleLogin}>  {isEmail ? "Use Mobile Instead" : "Use Email Instead"}</button>
         {/*Condition to toggle */}
-        {isEmail ?( <input type="Email" pattern=".+@gmail\.com" placeholder='Enter Your Email'required/>):(<input type="tel" maxLength={10} placeholder='Enter Your MobileNo'required/>)}
-        <input type="password"minLength={8} placeholder='Enter Your Password'required/>
+        {isEmail ?( <input type="Email" pattern=".+@gmail\.com" autoComplete="off" placeholder='Enter Your Email'required/>):(<input type="tel" maxLength={10} placeholder='Enter Your MobileNo'required/>)}
+        <input type="password"minLength={8} autoComplete="off" placeholder='Enter Your Password'required/>
         <button className='LogInBtn'>Log In</button>
       </div>
     </div>

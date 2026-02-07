@@ -18,8 +18,8 @@ function Signup() {
         <p>Already have an account <NavLink to="/Login" className="login">Log in</NavLink></p>
         <input type="text" spellCheck="false" placeholder='First Name'required/>
         <input type="text" spellCheck="false" placeholder='Last Name'required/>
-        <input type="Email" pattern=".+@gmail\.com" placeholder='Email'required/>
-        <input type="password"minLength={8} placeholder='Enter Your Password'required/>
+        <input type="Email" pattern=".+@gmail\.com" autoComplete="off" placeholder='Email'required/>
+        <input type="password"minLength={8} autoComplete="off" placeholder='Enter Your Password'required/>
         <input type="tel" maxLength={10} placeholder='Enter Your MobileNo'required/> 
         <button className='SignupBtn'>Create account</button>
       </div>

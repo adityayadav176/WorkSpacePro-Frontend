@@ -1,0 +1,60 @@
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 12vh;
+    width: 100%;
+    background-color: #fff;
+}
+
+.color{
+    background-color: red;
+}
+.left{
+    display: flex;
+}
+
+.left i{
+    font-size: 3.5rem;
+    color: blueviolet;
+}
+
+.left h4{
+    margin-left: 2px;
+    font-weight: 100;
+}
+
+
+.right ul{
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-right: 20px;
+    list-style: none;
+}
+
+.right ul {
+    cursor: pointer;
+    list-style: none;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    align-items: center;
+}
+
+.right ul li a {
+  text-decoration: none;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+/* HOVER ONLY WHEN NOT ACTIVE */
+.right ul li a:hover:not(.active) {
+  background-color: #ececec;
+}
+
+/* ACTIVE (Clicked Page) */
+.right ul li a.active {
+  background-color: #2563eb;  /* blue */
+  color: white;
+}

@@ -9,7 +9,7 @@ function NavBar() {
      <div className="left">
       <i className="fa-brands fa-square-dribbble"></i>
       <div className="title">
-     <h1>Workspace Pro</h1>
+     <h1>WorkSpace Pro</h1>
         <h4>Manage Everything</h4>
       </div>
      </div>

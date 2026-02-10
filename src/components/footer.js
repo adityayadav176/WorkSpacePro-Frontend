@@ -8,16 +8,15 @@ function Footer() {
     <div class="footer-container">
 
       <div class="footer-brand">
-        <h2 class="logo">Figma Make</h2>
+        <h2 class="logo">WorkSpace Pro</h2>
         <p>
-          Building the future of web development, one component at a time.
-          Create beautiful, responsive applications with speed and precision.
+          This Notes & Task App For You, you Can Explore The app Right Now I Hope This App Help You Thanks For Visit WorkSpace Pro! 
         </p>
 
         <ul class="contact">
-          <li>📍 123 Innovation Dr, Tech City, TC 94043</li>
-          <li>📞 +1 (555) 123-4567</li>
-          <li>✉️ support@figmamake.com</li>
+          <li>📍 123 Town Agra Sector 12</li>
+          <li>📞 +91 9639761042</li>
+          <li>✉️ support@WorkSpace.com</li>
         </ul>
       </div>
 

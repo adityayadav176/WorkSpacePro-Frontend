@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from '../components/NavBar';
 import NoteItem from '../components/noteItem';
 import "./Css/notes.css";
+import Footer from './footer';
 
 
 function Notes() {
@@ -39,6 +40,7 @@ function Notes() {
       <NoteItem />
       <NoteItem />
       </div>
+      <Footer/>
     </>
   )
 }

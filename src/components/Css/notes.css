@@ -1,6 +1,29 @@
 .notes-container {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  padding: 0 2rem;
+  padding: 0 2rem; 
+  margin-top: 2rem;
+}
+
+.notes-title-container{
+    display: flex;
+    height: 20vh;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 2rem;
+}
+
+.notes-nav p{
+    margin-top: 0.5rem;
+    word-spacing: 0.2rem;
+    color: grey;
+}
+
+.add-note{
+    padding: 0.8rem 2rem;
+    border-radius: 1rem;
+    background-color: blueviolet;
+    color: aliceblue;
+    border: none;
 }

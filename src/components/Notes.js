@@ -10,6 +10,7 @@ function Notes() {
     <>
 
       <NavBar />
+      <div className="notes-title-container">
       <div className="notes-nav">
         <h2>Notes & Documentation</h2>
         <p>Keep track of important information</p>
@@ -19,7 +20,21 @@ function Notes() {
           <i class="fa-solid fa-plus">
           </i>New Note</button>
       </div>
+      </div>
+
       <div className="notes-container">
+      <NoteItem />
+      <NoteItem />
+      <NoteItem />
+      <NoteItem />
+      <NoteItem />
+      <NoteItem />
+      <NoteItem />
+      <NoteItem />
+      <NoteItem />
+      <NoteItem />
+      <NoteItem />
+      <NoteItem />
       <NoteItem />
       <NoteItem />
       <NoteItem />

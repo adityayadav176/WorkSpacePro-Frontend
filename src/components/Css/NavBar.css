@@ -5,6 +5,7 @@ nav{
     min-height: 12vh;
     width: 100%;
     background-color: #fff;
+    /* position: fixed; */
 }
 
 .color{

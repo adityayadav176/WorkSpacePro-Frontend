@@ -16,9 +16,8 @@ function NavBar() {
      <div className="right">
       <ul>
         <li><NavLink to="/Dashboard"><i className="fa-regular fa-user"></i><span>Dashboard</span></NavLink></li>
-        <li><NavLink to="Task"><i className="fa-regular fa-square-check"></i><span>Tasks</span></NavLink></li>
-        <li><NavLink to="Notes"><i className="fa-regular fa-file-lines"></i><span>Notes</span></NavLink></li>
-        <li><NavLink to="Signup"><i className="fa-solid fa-user-plus"></i><span>Signup</span></NavLink></li>
+        <li><NavLink to="/Task"><i className="fa-regular fa-square-check"></i><span>Tasks</span></NavLink></li>
+        <li><NavLink to="/Notes"><i className="fa-regular fa-file-lines"></i><span>Notes</span></NavLink></li>
       </ul>
      </div>
      </nav>

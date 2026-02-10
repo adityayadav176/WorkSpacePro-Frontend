@@ -1,10 +1,9 @@
 import './App.css';
-import NavBar from './components/NavBar';
 import Home from './components/Home';
-import Task from './components/Task'
-import Notes from './components/Notes';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Notes from './components/Notes'
+import Task from './components/Task'
 
 import {
   BrowserRouter as Router,
@@ -17,15 +16,14 @@ import {
 function App() {
   return (
     <>
-    {/* <NoteState> */}
+      {/* <NoteState> */}
       <Router>
-        <NavBar />
         <Routes>
-          <Route path="/Dashboard" element={<Home />} />
-          <Route path="/Task" element={<Task />} />
-          <Route path="/Notes" element={<Notes />} />
-          <Route path="/Login" element={<Login />} />
+           <Route path="/Dashboard" element={<Home />} />
+          <Route path="/" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
+          <Route path="/notes" element={<Task/>} />
+          <Route path="/task" element={<Notes />} />
         </Routes>
       </Router>
       {/* </NoteState> */}

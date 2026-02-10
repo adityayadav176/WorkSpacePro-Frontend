@@ -1,9 +1,12 @@
 import React from 'react'
+import NavBar from '../components/NavBar';
+import { Routes, Route } from 'react-router-dom';
 
 function Home() {
   return (
     <>
-    <h1>this is home</h1>
+    <NavBar />
+    <h1>This is home</h1>
     </>
   )
 }

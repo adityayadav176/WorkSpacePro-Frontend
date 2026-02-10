@@ -15,7 +15,7 @@ function Signup() {
       </div>
       <div className="Signup-right">
         <h1>Create an account</h1>
-        <p>Already have an account <NavLink to="/Login" className="login">Log in</NavLink></p>
+        <p>Already have an account <NavLink to="/" className="login">Log in</NavLink></p>
         <input type="text" spellCheck="false" placeholder='First Name'required/>
         <input type="text" spellCheck="false" placeholder='Last Name'required/>
         <input type="Email" pattern=".+@gmail\.com" autoComplete="off" placeholder='Email'required/>

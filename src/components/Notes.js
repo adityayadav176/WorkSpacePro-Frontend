@@ -28,17 +28,11 @@ function Notes() {
       </div>
 
       <div className="notes-container">
-      <NoteItem />
-      <NoteItem />
-      <NoteItem />
-      <NoteItem />
-      <NoteItem />
-      <NoteItem />
-      </div>
-      <Footer/>
-      {notes.map((note)=>{
-        return note.title
+        {notes.map((note)=>{
+        return  <NoteItem key={note._id} note={note}/>
       })}
+      </div>
+       <Footer/>
     </>
   )
 }

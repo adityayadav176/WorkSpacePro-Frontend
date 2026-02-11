@@ -1,18 +1,19 @@
 import React from 'react'
 import "./Css/noteItem.css";
 
-function NoteItem() {
+function NoteItem(props) {
+    const {note} = props;
     return (
         <>
             <div className="Notes-items">
                 <div className="Note-title">
-                    <h2>note - title</h2>
-                    <p className='tag'>tag</p>
+                    <h2>{note.title}</h2>
+                    <p className='tag'>{note.tag}</p>
                 </div>
-                <p className='description'>Discussed new feature implementation and timeline. Team agreed on sprint goals.</p>
+                <p className='description'>{note.description}</p>
                 <div className="Note-lower-data">
                     <div className="note-date">
-                        27/12/2024
+                       {note.date}
                     </div>
                     <div className="Note-btn">
                             <i className=

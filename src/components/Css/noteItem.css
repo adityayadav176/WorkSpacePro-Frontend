@@ -25,7 +25,7 @@
     font-size: 1.2rem;
 }
 
-.date {
+.note-date {
     margin: 0.8rem 0;
 }
 
@@ -45,8 +45,10 @@
     margin-right: 10px;
 }
 
-.fa-trash-can {
-    background-color: rgb(247, 181, 181);
+
+
+.note-trash-btn{
+      background-color: rgb(247, 181, 181);
     color: rgb(138, 41, 41);
     padding: 0.6rem;
     border-radius: 1rem;

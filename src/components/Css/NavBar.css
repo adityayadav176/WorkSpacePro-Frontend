@@ -8,21 +8,19 @@ nav{
     /* position: fixed; */
 }
 
-.color{
-    background-color: red;
-}
 .left{
     display: flex;
 }
 
 .left i{
-    font-size: 3.5rem;
+    font-size: 3rem;
     color: blueviolet;
 }
 
 .left h4{
     margin-left: 2px;
     font-weight: 100;
+    color: grey;
 }
 
 
@@ -37,7 +35,7 @@ nav{
 .right ul {
     cursor: pointer;
     list-style: none;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     border-radius: 1rem;
     align-items: center;
 }

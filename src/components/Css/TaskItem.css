@@ -1,0 +1,63 @@
+.Task-container {
+    padding: 1.3rem;
+    box-shadow: 0 0 2px gray;
+    border-radius: 1rem;
+    background-color: #f2f2f2;
+    margin: 0 2rem 2rem 2rem;
+}
+
+.task-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-title {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.task-title p {
+    background-color: rgb(255, 213, 213);
+    color: rgb(190, 11, 11);
+    border-radius: 2rem;
+    padding: 0.4rem 1.1rem;
+    font-weight: 500;
+}
+
+.task-tick-btn {
+    background-color: rgb(194, 200, 255);
+    padding: 0.7rem;
+    color: rgb(27, 27, 239);
+    border-radius: 1rem;
+    margin-right: 10px;
+}
+
+.task-trash-btn {
+    background-color: rgb(247, 181, 181);
+    color: rgb(138, 41, 41);
+    padding: 0.7rem;
+    border-radius: 1rem;
+}
+
+.Task-description {
+    margin: 1rem 0;
+    color: rgb(96, 87, 87);
+}
+
+.task-process-date {
+    display: flex;
+    gap: 1rem;
+    color: rgb(96, 87, 87);
+    font-weight: 200;
+}
+
+.process {
+    display: flex;
+    gap: 2px;
+}
+
+.task-date {
+    display: flex;
+    gap: 2px;
+}

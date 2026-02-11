@@ -11,12 +11,12 @@ function NoteItem() {
                 </div>
                 <p className='description'>Discussed new feature implementation and timeline. Team agreed on sprint goals.</p>
                 <div className="Note-lower-data">
-                    <div className="date">
+                    <div className="note-date">
                         27/12/2024
                     </div>
                     <div className="Note-btn">
                             <i class="fa-regular fa-pen-to-square"></i>
-                            <i class="fa-regular fa-trash-can"></i>
+                            <i class="fa-regular fa-trash-can note-trash-btn"></i>
                     </div>
                 </div>
             </div>

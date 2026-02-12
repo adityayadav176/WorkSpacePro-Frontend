@@ -5,7 +5,7 @@ import noteContext from "../context/notes/noteContext"
 function AddNote(props) {
     const context = useContext(noteContext);
     const { addNote } = context;
-    const [note, setNote] = useState({ title: "", description: "", tag: "" })
+    const [note, setNote] = useState({ title: "", description: "", tag: "general" })
 
     const handleClick = () => {
         if (!note.title.trim() || !note.description.trim()) {

@@ -36,7 +36,7 @@
   justify-content: flex-end;
 }
 
-.saveBtnUpdate {
+/* .saveBtnUpdate {
   background: green;
   color: white;
   border: none;
@@ -45,10 +45,58 @@
   cursor: pointer;
 }
 
+.saveBtnUpdate {
+    padding: 0.7rem 2rem;
+    border-radius: 0.8rem;
+    background-color: blueviolet;
+    color: aliceblue;
+    display: flex;
+    border: none;
+    font-size: 1rem;
+    gap: 10px;
+}
+
+.saveBtnUpdate:hover{
+   background: rgb(1, 162, 1);
+}
+
 .cancelBtnUpdate {
   background: #ddd;
   border: none;
   padding: 8px 16px;
   border-radius: 8px;
   cursor: pointer;
+} */
+
+
+.saveBtnUpdate {
+    padding: 0.7rem 2rem;
+    border-radius: 0.8rem;
+    background-color: blueviolet;
+    color: aliceblue;
+    display: flex;
+    border: none;
+    font-size: 1rem;
+    gap: 10px;
+    justify-content: space-evenly;
+}
+
+.saveBtnUpdate:hover {
+    background-color: rgb(122, 9, 227);
+}
+
+.cancelBtnUpdate:hover {
+    background-color: rgb(185, 182, 189);
+}
+
+.cancelBtnUpdate {
+    padding: 0.7rem 2rem;
+    border-radius: 0.8rem;
+    background-color: rgb(220, 216, 224);
+    color: black;
+    display: flex;
+    border: none;
+    font-size: 1rem;
+    gap: 10px;
+    justify-content: space-evenly;
 }

@@ -13,14 +13,13 @@ function Notes() {
   const {notes, getNotes ,updateNote} = context; 
   useEffect(() => {
    getNotes();
-   // eslint-disable-next-line
-  }, [])
+  }, [getNotes])
   
   const [showForm, setShowForm] = useState(false);
 
   return (
     <>
-
+        
       <NavBar />
       <div className="notes-title-container">
       <div className="notes-nav">
@@ -36,7 +35,6 @@ function Notes() {
       </div>
       </div>
      {showForm ? <AddNote closeForm={() => setShowForm(false)} /> : updateNote && <EditingNote/>}
-      {}
       <div className="notes-container">
         {notes.map((note)=>{
         return <NoteItem key={note._id} note={note}/>

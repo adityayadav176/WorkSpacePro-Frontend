@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import NavBar from '../components/NavBar';
 import Footer from './footer';
 import "./Css/dashboard.css";
+import noteContext from '../context/notes/noteContext';
 
 function Home() {
+   const context = useContext(noteContext);
+    const {notes} = context; 
   return (
     <>
     <NavBar />
@@ -29,7 +32,7 @@ function Home() {
       <div className="card">
         <div className="card-text">
           <p>Notes Created</p>
-          <h2>3</h2>
+          <h2>{notes.length}</h2>
         </div>
         <div className="icon purple">
           <i className="fa-regular fa-file-lines"></i>

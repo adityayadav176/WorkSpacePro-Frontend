@@ -16,7 +16,6 @@ const NoteState = (props) => {
       }
     });
     const json = await response.json();
-    console.log(json);
     setNotes(json)
   }
 
@@ -47,7 +46,6 @@ const NoteState = (props) => {
     }
   });
   const json = await response.json();
-  console.log(json);
 
   const newNote = notes.filter((note) => {return note._id !== id})
   setNotes(newNote);
@@ -68,7 +66,6 @@ const NoteState = (props) => {
   });
 
   const json = await response.json();
-  console.log(json);
 
   // CLIENT UPDATE
   let newNotes = JSON.parse(JSON.stringify(notes));

@@ -12,7 +12,7 @@ function AddNote(props) {
             alert("Fill title and description");
             return;
         }
-        addNote(note.title, shortText(note.description, 80), note.tag);
+        addNote(shortText(note.title, 20), shortText(note.description, 40), note.tag);
         setNote({ title: "", description: "", tag: "general" });
         props.closeForm();
     }

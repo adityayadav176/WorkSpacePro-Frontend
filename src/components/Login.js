@@ -12,7 +12,7 @@ function Login() {
   });
 
   const [isEmail, setIsEmail] = useState(false)
-
+  console.log(credentials.email)
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

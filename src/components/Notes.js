@@ -13,13 +13,13 @@ function Notes() {
   const {notes, getNotes ,updateNote} = context; 
   useEffect(() => {
    getNotes();
-  }, [getNotes])
+  }, [])
   
   const [showForm, setShowForm] = useState(false);
 
   return (
     <>
-        
+
       <NavBar />
       <div className="notes-title-container">
       <div className="notes-nav">

@@ -16,7 +16,7 @@ function NoteItem(props) {
                 <p className='description'>{note.description}</p>
                 <div className="Note-lower-data">
                     <div className="note-date">
-                        {note.date}
+                        {new Date(note.date).toDateString()}
                     </div>
                     <div className="Note-btn">
                         <i className="fa-regular fa-pen-to-square" onClick={() => {setUpdateNote(true); setCurrentNote(note);}}></i>

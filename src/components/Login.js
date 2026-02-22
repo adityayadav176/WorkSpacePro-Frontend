@@ -8,7 +8,10 @@ function Login() {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
+    mobileNo: ""
   });
+
+  const [isEmail, setIsEmail] = useState(false)
 
   const navigate = useNavigate();
 
@@ -66,15 +69,27 @@ function Login() {
           </p>
 
           <form onSubmit={handleSubmit}>
-            <input
+            {isEmail ? (<input
               type="text"
               name="email"
               autoComplete="off"
               value={credentials.email}
               onChange={onChange}
-              placeholder="Email address or phone number"
+              placeholder="Email address"
               required
             />
+            ) : (
+
+            <input
+              type="text"
+              name="mobileNo"
+              maxLength={10}
+              autoComplete="off"
+              value={credentials.mobileNo}
+              onChange={onChange}
+              placeholder="Enter Your mobileNo"
+              required
+            /> )}
 
             <input
               type="password"

@@ -12,13 +12,14 @@ import {
 } from "react-router-dom";
 
 import NoteState from './context/notes/NoteState';
+import TaskState from './context/tasks/TaskState';
 
 
 function App(props) {
   return (
     <>
+    <TaskState>
       <NoteState>
-
         <Router>
           <Routes>
             <Route path="/Dashboard" element={<Home />} />
@@ -29,6 +30,7 @@ function App(props) {
           </Routes>
         </Router>
       </NoteState>
+      </TaskState>
     </>
   );
 }

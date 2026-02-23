@@ -1,9 +1,20 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import NavBar from './NavBar'
 import "./Css/Task.css"
 import TaskItem from './TaskItem'
 import Footer from './footer';
+import taskContext from '../context/tasks/taskContext';
+
 function Task() {
+  const context = useContext(taskContext);
+  const {getTask, task} = context;
+  console.log(task)
+  
+  useEffect(() => {
+   getTask();
+  }, [])
+  
+
   return (
     <>
       <NavBar/>
@@ -19,12 +30,14 @@ function Task() {
           </i>New Task</button>
       </div>
       </div>
-      <TaskItem/>
-      <TaskItem/>
-      <TaskItem/>
+      {task.map((task)=>{
+        return <TaskItem key={task._id} task={task}/>
+        console.log(task)
+      })}
       <Footer/>
     </>
   )
 }
+
 
 export default Task

@@ -64,7 +64,7 @@ function Login() {
 
           <form onSubmit={handleSubmit}>
             {isEmail ? (<input
-              type="text"
+              type="email"
               name="email"
               autoComplete="off"
               value={credentials.email}
@@ -75,7 +75,7 @@ function Login() {
             ) : (
 
             <input
-              type="text"
+              type="Number"
               name="mobileNo"
               maxLength={10}
               autoComplete="off"

@@ -1,14 +1,16 @@
 import React from 'react'
 import './Css/TaskItem.css'
 
-function TaskItem() {
+function TaskItem(props) {
+  const {task} = props;
   return (
     <>
+   
       <div className="Task-container">
         <div className="task-data">
         <div className="task-title">
-            <h2>Complete project documentation</h2>
-            <p className='Priority'> high</p>
+            <h2>{task.title}</h2>
+            <p className='Priority'>{task.priority}</p>
         </div>
         <div className="task-btn">
             <i className=
@@ -18,18 +20,18 @@ function TaskItem() {
             </div>
         </div>
         <div className="Task-description">
-            <p>Write comprehensive documentation for the new features</p>
+            <p>{task.description}</p>
         </div>
         <div className="task-process-date">
            <div className="process">
             <i className=
 "fa-solid fa-check"></i>
-            Complete
+            {task.Status}
            </div>
            <div className="task-date">
             <i className=
 "fa-regular fa-clock"></i>
-            03/01/2025 
+            {new Date (task.date).toDateString()}
            </div>
         </div>
       </div> 

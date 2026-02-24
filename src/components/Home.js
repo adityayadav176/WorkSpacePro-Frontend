@@ -3,10 +3,14 @@ import NavBar from '../components/NavBar';
 import Footer from './footer';
 import "./Css/dashboard.css";
 import noteContext from '../context/notes/noteContext';
+import taskContext from '../context/tasks/taskContext';
 
 function Home() {
-   const context = useContext(noteContext);
-    const {notes} = context; 
+   const NotesContext = useContext(noteContext);
+    const {notes} = NotesContext;
+   const TaskContext = useContext(taskContext);
+    const {task} = TaskContext;
+     
   return (
     <>
     <NavBar />
@@ -21,7 +25,7 @@ function Home() {
       <div className="card">
         <div className="card-text">
           <p>Total Tasks</p>
-          <h2>3</h2>
+          <h2>{task.length}</h2>
         </div>
         <div className="icon blue">
           <i className=

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import NavBar from './NavBar'
 import "./Css/Task.css"
 import TaskItem from './TaskItem'
@@ -7,6 +7,7 @@ import taskContext from '../context/tasks/taskContext';
 import AddTask from './AddTask';
 
 function Task() {
+  const [AddTaskModal, setAddTaskModal] = useState(false)
   const context = useContext(taskContext);
   const {getTask, task} = context;
   console.log(task)
@@ -25,13 +26,13 @@ function Task() {
         <p>Organize and track your tasks</p>
       </div>
       <div className="btn">
-        <button className='add-Task'>
+        <button className='add-Task' onClick={()=>{setAddTaskModal(true)}}>
           <i className=
 "fa-solid fa-plus">
           </i>New Task</button>
       </div>
       </div>
-      <AddTask/>
+      {AddTaskModal ? <AddTask closeForm={()=>{setAddTaskModal(false)}}/> : ""}
       {task.map((task)=>{
         return <TaskItem key={task._id} task={task}/>
       })}

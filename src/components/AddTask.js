@@ -1,7 +1,11 @@
 import React from 'react'
 import "./Css/AddTask.css"
 
-function AddTask() {
+function AddTask(props) {
+    const {closeForm} = props;
+    const HandleClick = () => {
+        closeForm()
+    }
   return (
     <>
     <div className="addTaskBigContainer">
@@ -34,8 +38,8 @@ function AddTask() {
             </div>       
         </div>
         <div className="AddTaskBtn">
-            <button className='creteTask'>Create Task</button>
-            <button className='createTaskCancel'>Cancel</button>
+            <button className='creteTask' onClick={HandleClick}>Create Task</button>
+            <button className='createTaskCancel' onClick={closeForm}>Cancel</button>
         </div>
     </div> 
     </div>

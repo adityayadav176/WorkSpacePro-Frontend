@@ -13,7 +13,7 @@ function TaskItem(props) {
         <div className="task-data">
         <div className="task-title">
             <h2>{task.title}</h2>
-            <p className='Priority'>{task.priority}</p>
+            <p className={`Priority ${task.priority}`}>{task.priority}</p>
         </div>
         <div className="task-btn">
             <i className=

@@ -21,13 +21,6 @@
     align-items: center;
 }
 
-.task-title p {
-    background-color: rgb(255, 213, 213);
-    color: rgb(190, 11, 11);
-    border-radius: 2rem;
-    padding: 0.4rem 1.1rem;
-    font-weight: 500;
-}
 
 .task-tick-btn {
      background-color: rgb(209, 213, 255);
@@ -62,6 +55,27 @@
     gap: 1rem;
     color: rgb(96, 87, 87);
     font-weight: 200;
+}
+
+.Priority{
+    border-radius: 2rem;
+    padding: 0.4rem 1.1rem;
+    font-weight: 500;
+}
+
+.Low{
+    background-color: rgb(211, 255, 211);
+    color: green;
+}
+
+.Medium{
+    background-color: rgb(255, 250, 186);
+    color: rgb(148, 148, 0);
+}
+
+.High{
+    background-color: rgb(255, 201, 201);
+    color: red;
 }
 
 .process {

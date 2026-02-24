@@ -1,0 +1,67 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.addTaskBigContainer{
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.AddTaskContainer{
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    width: 90%;
+    border-radius: 12px;
+    background: white;
+    margin: 0 auto;  /* 🔥 This centers horizontally */
+}
+
+.TaskDetails{
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+
+.StatusData, .priorityData{
+     width: 43vw;
+}
+
+.AddTaskContainer h2{
+    margin-bottom: 2rem;
+}
+
+.AddTaskBtn {
+    display: flex;
+    gap: 1rem;
+}
+.AddTaskBtn button{
+    padding: 0.7rem 2rem;
+    border-radius: 0.8rem;
+    border: none;
+    font-size: 1rem;
+    justify-content: space-evenly;
+}
+
+.creteTask{
+    background-color: rgb(70, 70, 254);
+    color: aliceblue;
+}
+
+.createTaskCancel{
+    background-color: rgb(220, 216, 224);
+}
+
+.creteTask:hover{
+    background-color: rgb(14, 14, 223);
+}
+
+.createTaskCancel:hover{
+     background-color: rgb(185, 182, 189);
+}
+

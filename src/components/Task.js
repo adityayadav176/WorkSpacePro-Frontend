@@ -4,6 +4,7 @@ import "./Css/Task.css"
 import TaskItem from './TaskItem'
 import Footer from './footer';
 import taskContext from '../context/tasks/taskContext';
+import AddTask from './AddTask';
 
 function Task() {
   const context = useContext(taskContext);
@@ -30,6 +31,7 @@ function Task() {
           </i>New Task</button>
       </div>
       </div>
+      <AddTask/>
       {task.map((task)=>{
         return <TaskItem key={task._id} task={task}/>
       })}

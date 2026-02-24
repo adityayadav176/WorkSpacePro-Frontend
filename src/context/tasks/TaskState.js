@@ -7,22 +7,37 @@ const TaskState = (props) => {
     const [task, setTask] = useState(taskInitial);
 
     // fetchAllTask
-    const getTask = async() =>{
+    const getTask = async () => {
         const response = await fetch(`${Host}/api/task/fetchAllTask`, {
             method: "GET",
-            headers:{
+            headers: {
                 'Content-Type': 'application/json',
-                'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjk4NGMyYjk0ZDE4YzgwNTk4ZjNhNjJmIn0sImlhdCI6MTc3MDMwODI4MX0.JXU-0aLOSaDksPET3JlPl9JceKMo_1Tlvwf2gt01VXo"
+                'auth-token': localStorage.getItem('token')
             }
         });
 
         const json = await response.json()
         setTask(json);
-        console.log("API RESPONSE", json);
-        
+
     }
-    return(
-        <taskContext.Provider value={{task ,getTask, setTask}}>
+
+    // deleteTask
+    const deleteTask = async (id) => {
+        const response = await fetch(`${Host}/api/task/deleteTask/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
+        })
+        const json = await response.json()
+        const newTask = task.filter((task)=>{ return task._id !== id})
+        setTask(newTask);
+    }
+
+
+    return (
+        <taskContext.Provider value={{ task, getTask, setTask, deleteTask }}>
             {props.children}
         </taskContext.Provider>
     );

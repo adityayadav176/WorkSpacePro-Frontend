@@ -32,7 +32,6 @@ function Task() {
       </div>
       {task.map((task)=>{
         return <TaskItem key={task._id} task={task}/>
-        console.log(task)
       })}
       <Footer/>
     </>

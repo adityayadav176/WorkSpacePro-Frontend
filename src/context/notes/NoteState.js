@@ -66,6 +66,7 @@ const NoteState = (props) => {
   });
 
   const json = await response.json();
+  
 
   // CLIENT UPDATE
   let newNotes = JSON.parse(JSON.stringify(notes));

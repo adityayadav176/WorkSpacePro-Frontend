@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './Css/TaskItem.css'
+import taskContext from '../context/tasks/taskContext';
 
 function TaskItem(props) {
   const {task} = props;
+   const context = useContext(taskContext);
+  const {deleteTask} = context;
   return (
     <>
    
@@ -16,7 +19,7 @@ function TaskItem(props) {
             <i className=
 "fa-solid fa-check task-tick-btn"></i>
             <i className=
-"fa-regular fa-trash-can task-trash-btn"></i>
+"fa-regular fa-trash-can task-trash-btn" onClick={()=>{deleteTask(task._id)}}></i>
             </div>
         </div>
         <div className="Task-description">

@@ -56,17 +56,6 @@ function Footer() {
           Subscribe to our newsletter for the latest updates,
           articles, and resources.
         </p>
-
-        <form className=
-"newsletter-form">
-          <input type="email" placeholder="Enter your email" />
-          <button type="submit">→</button>
-        </form>
-
-        <small>
-          By subscribing, you agree to our
-          <a href="/">Privacy Policy</a>.
-        </small>
       </div>
 
     </div>
@@ -75,18 +64,12 @@ function Footer() {
 "footer-bottom">
       <p>© 2026 WorkSpace Pro Inc. All rights reserved.</p>
 
-      <div className=
-"social-icons">
-        <a href="/"><i className=
-"fa-brands fa-instagram"></i></a>
-        <a href="/"><i className=
-"fa-brands fa-linkedin"></i></a>
-        <a href="/"><i className=
-"fa-brands fa-whatsapp"></i></a>
-        <a href="/"><i className=
-"fa-brands fa-github"></i></a>
-        <a href="/"><i className=
-"fa-brands fa-youtube"></i></a>
+      <div className="social-icons">
+            <a href="www.instagram.com"><i className= "fa-brands fa-instagram"></i></a>
+            <a href="www.linkedin.com"><i className="fa-brands fa-linkedin"></i></a>
+            <a href="www.whatsapp.com"><i className= "fa-brands fa-whatsapp"></i></a>
+            <a href="www.github.com"><i className="fa-brands fa-github"></i></a>
+            <a href="www.youtube.com"><i className="fa-brands fa-youtube"></i></a>
       </div>
     </div>
   </footer>

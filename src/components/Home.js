@@ -13,7 +13,13 @@ function Home() {
   useEffect(() => {
    getNotes()
    getTask()
-  }, [])
+  }, [])  
+  const Today = new Date().toDateString();
+  const completedTask = task.filter(task => task.status === "Complete").length;
+  const todayNotes = notes.filter(note => new Date(note.date).toDateString() === Today).length;
+  const totalItems = task.length + notes.length;
+  const productivity = totalItems === 0 ? 0 : Math.round(((completedTask + todayNotes) / totalItems) * 100);
+  
 
   return (
     <>
@@ -50,7 +56,7 @@ function Home() {
         <div className="card">
           <div className="card-text">
             <p>Completed</p>
-            <h2>{task.filter(task => task.status === "Complete").length}</h2>
+            <h2>{completedTask}</h2>
           </div>
           <div className="icon green">
             <i className=
@@ -61,7 +67,7 @@ function Home() {
         <div className="card">
           <div className="card-text">
             <p>Productivity</p>
-            <h2>33%</h2>
+            <h2>{`${productivity} %`}</h2>
           </div>
           <div className="icon orange">
             <i className=

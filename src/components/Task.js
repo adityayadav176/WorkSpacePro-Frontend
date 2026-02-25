@@ -10,7 +10,6 @@ function Task() {
   const [AddTaskModal, setAddTaskModal] = useState(false)
   const context = useContext(taskContext);
   const {getTask, task} = context;
-  console.log(task)
   
   useEffect(() => {
    getTask();

@@ -5,25 +5,28 @@ import "./Css/dashboard.css";
 import noteContext from '../context/notes/noteContext';
 import taskContext from '../context/tasks/taskContext';
 
-function Home() {
+function Home(props) {
   const NotesContext = useContext(noteContext);
   const { notes, getNotes } = NotesContext;
   const TaskContext = useContext(taskContext);
   const { task, getTask } = TaskContext;
+  const { startLoading, stopLoading } = props;
   useEffect(() => {
-   getNotes()
-   getTask()
-  }, [])  
+    startLoading()
+    getNotes()
+    getTask()
+    stopLoading()
+  }, [])
   const Today = new Date().toDateString();
   const completedTask = task.filter(task => task.status === "Complete").length;
   const todayNotes = notes.filter(note => new Date(note.date).toDateString() === Today).length;
   const totalItems = task.length + notes.length;
   const productivity = totalItems === 0 ? 0 : Math.round(((completedTask + todayNotes) / totalItems) * 100);
-  
+
 
   return (
     <>
-      <NavBar />
+      <NavBar startLoading={startLoading} stopLoading={stopLoading}/>
       <div className="tasks-title-container">
         <div className="tasks-nav">
           <h2>Dashboard Overview</h2>

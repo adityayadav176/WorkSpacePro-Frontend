@@ -27,10 +27,19 @@ function App() {
   useEffect(() => {
     setProgress(0);
     setProgress(30);
-    
+    const titles = {
+      "/": "Login",
+      "/signup": "Signup",
+      "/Dashboard": "Dashboard",
+      "/Notes": "Notes",
+      "/Task": "Task"
+    };
+
     const timer = setTimeout(() => {
       setProgress(100);
     }, 600);
+    document.title = titles[location.pathname] || "WorkSpace Pro";
+
 
     return () => clearTimeout(timer);
     // eslint-disable-next-line
@@ -40,24 +49,23 @@ function App() {
     <>
       <TaskState>
         <NoteState>
-         
-            <ToastContainer
-              position="bottom-right"
-              autoClose={2000}
-              newestOnTop
-              closeOnClick
-              pauseOnHover
-              draggable
-            />
-            <LoadingBar color="blue" progress={progress} onLoaderFinished={() => setProgress(0)} height={3} shadow={false} />
-            <Routes>
-              <Route path="/Dashboard" element={<Home />} />
-              <Route path="/notes" element={<Notes />} />
-              <Route path="/task" element={<Task />} />
-              <Route path="/Signup" element={<Signup />} />
-              <Route path="/" element={<Login />} />
-            </Routes>
-        
+
+          <ToastContainer
+            position="bottom-right"
+            autoClose={2000}
+            newestOnTop
+            closeOnClick
+            pauseOnHover
+            draggable
+          />
+          <LoadingBar color="blue" progress={progress} onLoaderFinished={() => setProgress(0)} height={3} shadow={false} />
+          <Routes>
+            <Route path="/Dashboard" element={<Home />} />
+            <Route path="/notes" element={<Notes />} />
+            <Route path="/task" element={<Task />} />
+            <Route path="/Signup" element={<Signup />} />
+            <Route path="/" element={<Login />} />
+          </Routes>
         </NoteState>
       </TaskState>
     </>

@@ -26,6 +26,7 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
+    setProgress(0);
     setProgress(30);
 
     const timer = setTimeout(() => {

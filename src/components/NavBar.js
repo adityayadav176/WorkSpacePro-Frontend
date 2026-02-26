@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import "./Css/NavBar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import progressContext from '../context/Progress/progressContext';
 
 function NavBar() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const ProgressContext = useContext(progressContext)
+  const { setProgress } = ProgressContext;
 
   useEffect(() => {
     const getUser = async () => {
@@ -26,9 +29,12 @@ function NavBar() {
     }
   }, []);
   const handleLogout = () => {
+    setProgress(20);
     localStorage.removeItem('token')
+    setProgress(50);
     toast.success("Logged out");
-     navigate('/')
+    navigate('/')
+    setProgress(100)
   }
   const [showConfirm, setShowConfirm] = useState(false)
   return (
@@ -44,15 +50,15 @@ function NavBar() {
         </div>
         <div className="right">
           <ul>
-            <li><NavLink to="/Dashboard"><i className="fa-regular fa-user"></i><span>Dashboard</span></NavLink></li>
-            <li><NavLink to="/Task"><i className="fa-regular fa-square-check"></i><span>Tasks</span></NavLink></li>
-            <li><NavLink to="/Notes"><i className="fa-regular fa-file-lines"></i><span>Notes</span></NavLink></li>
+            <li><NavLink to="/Dashboard" ><i className="fa-regular fa-user"></i><span>Dashboard</span></NavLink></li>
+            <li><NavLink to="/Task" ><i className="fa-regular fa-square-check"></i><span>Tasks</span></NavLink></li>
+            <li><NavLink to="/Notes" ><i className="fa-regular fa-file-lines"></i><span>Notes</span></NavLink></li>
             {user && (<div className="user-section">
               <p className='userName'>{user.name}</p>
               <p className='userEmail'>{user.email}</p>
             </div>
             )}
-            <li onClick={() => {setShowConfirm(true)}} className='LogoutBtn'> <i className=
+            <li onClick={() => { setShowConfirm(true) }} className='LogoutBtn'> <i className=
               "fa-solid fa-arrow-right-from-bracket"></i><span className='logout'>Logout</span></li>
           </ul>
         </div>

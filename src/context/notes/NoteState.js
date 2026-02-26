@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import noteContext from "./noteContext";
+import progressContext from "../Progress/progressContext";
 
 const NoteState = (props) => {
+   const ProgressContext = useContext(progressContext)
+  const { setProgress } = ProgressContext;
   const host = "http://localhost:8000";
   const notesInitial = []
 
@@ -23,6 +26,7 @@ const NoteState = (props) => {
 
   const addNote = async (title, description, tag) => {
     // API CALL
+    setProgress(30)
     const response = await fetch(`${host}/api/notes/addNote`, {
       method: "POST",
       headers: {
@@ -33,11 +37,13 @@ const NoteState = (props) => {
     });
     const json = await response.json();
     setNotes((prevNotes) => prevNotes.concat(json));
+    setProgress(100)
   }
 
   // DELETE NOTE
 
  const deleteNote = async (id) => {
+    setProgress(30)
   const response =  await fetch(`${host}/api/notes/deleteNote/${id}`, {
     method: 'DELETE',
     headers: {
@@ -46,15 +52,15 @@ const NoteState = (props) => {
     }
   });
   const json = await response.json();
-
   const newNote = notes.filter((note) => {return note._id !== id})
   setNotes(newNote);
+  setProgress(100)
 }
 
   // EDIT NOTE
 
  const editNote = async (id, title, description, tag) => {
-
+  setProgress(30)
   // API CALL
   const response = await fetch(`${host}/api/notes/updateNote/${id}`, {
     method: "PUT",  // ideally should be PUT
@@ -64,9 +70,7 @@ const NoteState = (props) => {
     },
     body: JSON.stringify({ title, description, tag })
   });
-
   const json = await response.json();
-  
 
   // CLIENT UPDATE
   let newNotes = JSON.parse(JSON.stringify(notes));
@@ -81,6 +85,7 @@ const NoteState = (props) => {
   }
 
   setNotes(newNotes);
+  setProgress(100)
 };
 
  const shortText = (text, maxLength) => {

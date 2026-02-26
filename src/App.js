@@ -10,31 +10,36 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  useLocation
 } from "react-router-dom";
 
 import NoteState from './context/notes/NoteState';
 import TaskState from './context/tasks/TaskState';
 import LoadingBar from "react-top-loading-bar";
-import React, { useRef } from 'react';
+import React, { useContext, useEffect } from 'react';
+import ProgressContext from './context/Progress/progressContext';
 
 
 
 function App() {
-  const loadingRef = useRef(null);
+  const { progress, setProgress } = useContext(ProgressContext)
+  const location = useLocation();
 
-  const startLoading = () => {
-    loadingRef.current.continuousStart();
-  };
+  useEffect(() => {
+    setProgress(30);
 
-  const stopLoading = () => {
-    loadingRef.current.complete();
-  };
+    const timer = setTimeout(() => {
+      setProgress(100);
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, [location]);
 
   return (
     <>
       <TaskState>
         <NoteState>
-          <Router>
+         
             <ToastContainer
               position="bottom-right"
               autoClose={2000}
@@ -43,15 +48,15 @@ function App() {
               pauseOnHover
               draggable
             />
-            <LoadingBar color="#9318ff" ref={loadingRef} height={3} shadow={false} />
+            <LoadingBar color="blue" progress={progress} onLoaderFinished={() => setProgress(0)} height={3} shadow={false} />
             <Routes>
-              <Route path="/Dashboard" element={<Home startLoading={startLoading} stopLoading={stopLoading} />} />
-              <Route path="/notes" element={<Notes startLoading={startLoading} stopLoading={stopLoading}/>} />
-              <Route path="/task" element={<Task startLoading={startLoading} stopLoading={stopLoading}/>} />
-              <Route path="/Signup" element={<Signup startLoading={startLoading} stopLoading={stopLoading}/>} />
-              <Route path="/" element={<Login startLoading={startLoading} stopLoading={stopLoading}/>} />
+              <Route path="/Dashboard" element={<Home />} />
+              <Route path="/notes" element={<Notes />} />
+              <Route path="/task" element={<Task />} />
+              <Route path="/Signup" element={<Signup />} />
+              <Route path="/" element={<Login />} />
             </Routes>
-          </Router>
+        
         </NoteState>
       </TaskState>
     </>

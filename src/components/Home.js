@@ -5,18 +5,19 @@ import "./Css/dashboard.css";
 import noteContext from '../context/notes/noteContext';
 import taskContext from '../context/tasks/taskContext';
 
-function Home(props) {
+function Home() {
   const NotesContext = useContext(noteContext);
   const { notes, getNotes } = NotesContext;
   const TaskContext = useContext(taskContext);
   const { task, getTask } = TaskContext;
-  const { startLoading, stopLoading } = props;
   useEffect(() => {
-    startLoading()
-    getNotes()
-    getTask()
-    stopLoading()
-  }, [])
+    const fetchData = async () => {
+      await getNotes();      
+      await getTask();
+    };
+
+    fetchData();
+  }, []);
   const Today = new Date().toDateString();
   const completedTask = task.filter(task => task.status === "Complete").length;
   const todayNotes = notes.filter(note => new Date(note.date).toDateString() === Today).length;
@@ -26,7 +27,7 @@ function Home(props) {
 
   return (
     <>
-      <NavBar startLoading={startLoading} stopLoading={stopLoading}/>
+      <NavBar />
       <div className="tasks-title-container">
         <div className="tasks-nav">
           <h2>Dashboard Overview</h2>

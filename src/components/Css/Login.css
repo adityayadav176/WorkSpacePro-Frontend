@@ -1,62 +1,132 @@
-body {
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.LoginContainer {
+    background: linear-gradient(135deg, #1e3a8a, #4f46e5);
     height: 100vh;
+    display: flex;
+    width: 100%;
 }
 
-.Login-page {
-    height: 94.5vh;
-    margin-bottom: 2rem;
-    padding-top: 2rem;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.Login-left img {
-    height: 450px;
-    width: 400px;
-    object-fit: cover;
-    margin: 10px;
-}
-
-.Login-right {
-    margin: 0 50px;
-    width: 50%;
-    padding: 20px;
+.LoginLeft {
+    flex: 1;
+    color: white;
+    padding: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
-    color: aliceblue;
 }
 
-.login {
-    color: rgb(0, 0, 255);
-    text-decoration: none;
+.brand h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
 }
 
-.Login-right input {
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    background: rgb(218, 164, 234);
+.brand p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 40px;
 }
 
-.LogInBtn {
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    background: rgb(91, 3, 117);
-    color: aliceblue;
+.feature {
+    margin-bottom: 25px;
 }
 
-.toggle {
-    background-color: red;
+.feature h3 {
+    font-weight: 500;
+    margin-bottom: 5px;
 }
 
-.Login-right form {
+.LoginRight {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    background: #f4f6f9;
+    position: relative;
+}
+
+/* Button container */
+.AuthenticationBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.LoginBtn {
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    border: none;
+    color: white;
+    background: linear-gradient(90deg, #4f46e5, #4338ca);
+}
+
+.LoginBtn:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.LoginForm {
+    width: 420px;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.LoginForm h2 {
+    margin-bottom: 25px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
     width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    outline: none;
+    margin-bottom: 1.5rem;
+    font-size: 15px;
+}
+
+.input-group label {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  color: #777;
+  pointer-events: none;
+  transition: 0.3s;
+  background: white;
+  padding: 0 5px;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: -8px;
+  font-size: 12px;
+  color: #4f46e5;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #4f46e5, #4338ca);
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    opacity: 0.9;
 }

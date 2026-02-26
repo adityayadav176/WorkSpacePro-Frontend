@@ -10,7 +10,7 @@ function AddNote(props) {
 
     const handleClick = () => {
         if (!note.title.trim() || !note.description.trim()) {
-            alert("Fill title and description");
+             toast.error("All Fields Are Required");
             return;
         }
         const success = addNote(note.title, note.description, note.tag);

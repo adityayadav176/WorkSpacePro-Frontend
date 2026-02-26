@@ -1,31 +1,65 @@
-import React from 'react'
-import { NavLink } from "react-router-dom";
-import img from "../assest/image.png"
-import "./Css/Signup.css";
-import bg from "../assest/Fimage3.jpg"
-
-
-
+import React, { useState, useContext } from 'react'
+import './Css/Login.css'
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import './Css/Signup.css'
+import progressContext from '../context/Progress/progressContext';
 
 function Signup() {
+  const ProgressContext = useContext(progressContext)
+  const { setProgress } = ProgressContext;
+  const navigate = useNavigate();
   return (
-    <div className="signup-page" style={{ backgroundImage: `url(${bg})` }}>
-    <div className="Login-Signup-Container">
-      <div className="Signup-left">
-        <img src={img} alt="" />
+    <>
+      <div className="SignupContainer">
+        <div className="SignupLeft">
+          <div className="brand">
+            <h1>WorkSpace Pro</h1>
+            <p>Organize. Track. Achieve.</p>
+          </div>
+          <div className="feature">
+            <h3>✔ Manage Tasks</h3>
+            <p>Create and organize tasks efficiently.</p>
+          </div>
+          <div className="feature">
+            <h3>✔ Smart Notes</h3>
+            <p>Store your important ideas securely.</p>
+          </div>
+          <div className="feature">
+            <h3>✔ Productivity Insights</h3>
+            <p>Track progress with smart analytics.</p>
+          </div>
+        </div>
+        <div className="SignupRight">
+          <div className="AuthenticationBtn">
+            <button className='SignupBtn' onClick={() => {setProgress(); navigate("/") }}>Login</button>
+          </div>
+          <div className="SignupForm">
+            <form>
+              <h2>Create Account With WorkSpace Pro</h2>
+              <div className="Signup-input-group">
+                <input type="name" required name="name" spellCheck='false' autoComplete='off' />
+                <label>Full Name</label>
+              </div>
+              <div className="Signup-input-group">
+                <input type="email" required name="email" autoComplete='off' />
+                <label>Email Address</label>
+              </div>
+
+              <div className="Signup-input-group">
+                <input type="password" required minLength={8} name="password" autoComplete='off' />
+                <label>Password</label>
+              </div>
+              <div className="Signup-input-group">
+                <input type="tel" required maxLength={10} name="mobileNo" autoComplete='off' />
+                <label>MobileNo</label>
+              </div>
+              <button className='primary-btn'>Login</button>
+            </form>
+          </div>
+        </div>
       </div>
-      <div className="Signup-right">
-        <h1>Create an account</h1>
-        <p>Already have an account <NavLink to="/" className="login">Log in</NavLink></p>
-        <input type="text" spellCheck="false" placeholder='First Name'required/>
-        <input type="text" spellCheck="false" placeholder='Last Name'required/>
-        <input type="Email" pattern=".+@gmail\.com" autoComplete="off" placeholder='Email'required/>
-        <input type="password"minLength={8} autoComplete="off" placeholder='Enter Your Password'required/>
-        <input type="tel" maxLength={10} placeholder='Enter Your MobileNo'required/> 
-        <button className='SignupBtn'>Create account</button>
-      </div>
-    </div>
-    </div>
+    </>
   )
 }
 

@@ -12,7 +12,7 @@ function AddTask(props) {
 
     const HandleClick = () => {
         if (!task.title.trim() || !task.description.trim()) {
-            alert("Fill title and description");
+             toast.error("All Fields Are Required");
             return;
         }
         const success = addTask(task.title, task.description, task.status, task.priority)

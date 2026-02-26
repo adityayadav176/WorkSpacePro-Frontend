@@ -3,7 +3,7 @@ import noteContext from "./noteContext";
 import progressContext from "../Progress/progressContext";
 
 const NoteState = (props) => {
-   const ProgressContext = useContext(progressContext)
+  const ProgressContext = useContext(progressContext)
   const { setProgress } = ProgressContext;
   const host = "http://localhost:8000";
   const notesInitial = []

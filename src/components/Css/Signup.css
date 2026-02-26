@@ -1,54 +1,132 @@
-body {
-    height: calc(100vh-12vh);
+* {
+    padding: 0;
+    margin: 0;
 }
 
-
-.signup-page {
-    background-color: rgba(58, 1, 108, 0.836);
-    height: 94.5vh;
-    margin-bottom: 2rem;
-    padding-top: 2rem;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
+.SignupContainer {
+    background: linear-gradient(135deg, #1e3a8a, #4f46e5);
+    height: 100vh;
+    display: flex;
+    width: 100%;
 }
 
-
-.Signup-left img {
-    height: 450px;
-    width: 400px;
-    object-fit: cover;
-    margin: 10px;
-}
-
-.Signup-right {
-    margin: 0 50px;
-    width: 50%;
-    padding: 20px;
+.SignupLeft {
+    flex: 1;
+    color: white;
+    padding: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: aliceblue;
 }
 
-.login {
-    color: rgb(0, 0, 255);
-    text-decoration: none;
+.brand h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
 }
 
-.Signup-right input {
-    padding: 10px;
-    border-radius: 6px;
+.brand p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+.feature {
+    margin-bottom: 25px;
+}
+
+.feature h3 {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.SignupRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f4f6f9;
+    position: relative;
+}
+
+/* Button container */
+.AuthenticationBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.SignupBtn {
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
     border: none;
-    background: rgb(218, 164, 234);
+    color: white;
+    background: linear-gradient(90deg, #4f46e5, #4338ca);
 }
 
-.Signup-right button {
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
+.SignupBtn:hover {
+    opacity: 0.9;
     cursor: pointer;
-    background: rgb(91, 3, 117);
-    color: aliceblue;
+}
+
+.SignupForm {
+    width: 420px;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.SignupForm h2 {
+    margin-bottom: 25px;
+}
+
+.Signup-input-group {
+    position: relative;
+    /* margin-bottom: 25px; */
+}
+
+.Signup-input-group input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    outline: none;
+    margin-bottom: 1.5rem;
+    font-size: 15px;
+}
+
+.Signup-input-group label {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  color: #777;
+  pointer-events: none;
+  transition: 0.3s;
+  background: white;
+  padding: 0 5px;
+}
+
+.Signup-input-group input:focus + label,
+.Signup-input-group input:valid + label {
+  top: -8px;
+  font-size: 12px;
+  color: #4f46e5;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #4f46e5, #4338ca);
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    opacity: 0.9;
 }

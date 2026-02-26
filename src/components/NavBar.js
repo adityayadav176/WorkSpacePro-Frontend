@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Css/NavBar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import progressContext from '../context/Progress/progressContext';
 
 function NavBar() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const ProgressContext = useContext(progressContext)
-  const { setProgress } = ProgressContext;
 
   useEffect(() => {
     const getUser = async () => {
@@ -26,15 +23,16 @@ function NavBar() {
 
     if (localStorage.getItem("token")) {
       getUser();
+    }else{
+      localStorage.removeItem('token')
+      navigate('/')
+      toast.error("Plz login to explore WorkSpace Pro")
     }
   }, []);
   const handleLogout = () => {
-    setProgress(20);
     localStorage.removeItem('token')
-    setProgress(50);
     toast.success("Logged out");
     navigate('/')
-    setProgress(100)
   }
   const [showConfirm, setShowConfirm] = useState(false)
   return (

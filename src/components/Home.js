@@ -12,7 +12,7 @@ function Home() {
   const { task, getTask } = TaskContext;
   useEffect(() => {
     const fetchData = async () => {
-      await getNotes();      
+      await getNotes();
       await getTask();
     };
 

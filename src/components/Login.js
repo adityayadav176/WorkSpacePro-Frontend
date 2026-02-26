@@ -1,14 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import img from "../assest/image.png";
 import "./Css/Login.css";
 import bg from "../assest/Fimage3.jpg"
 import { toast } from "react-toastify";
-import progressContext from "../context/Progress/progressContext";
 
 function Login() {
-  const ProgressContext = useContext(progressContext)
-  const { setProgress } = ProgressContext;
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -34,14 +31,9 @@ function Login() {
 
 
       if (response.ok) {
-        setProgress(20);
         localStorage.setItem("token", json.authtoken);
-        setProgress(40)
         toast.success("Login Successful");
-        setProgress(70)
         navigate("/Dashboard");
-        setProgress(100)
-
       }
       else {
         toast.error("Invalid Credentials");

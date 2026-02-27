@@ -38,7 +38,7 @@ function App() {
     const timer = setTimeout(() => {
       setProgress(100);
     }, 600);
-    document.title = titles[location.pathname] || "WorkSpace Pro";
+    document.title = `WorkSpace Pro - ${titles[location.pathname]}` || "WorkSpace Pro";
 
 
     return () => clearTimeout(timer);

@@ -19,7 +19,7 @@ function Home() {
     fetchData();
   }, []);
   const Today = new Date().toDateString();
-  const completedTask = task.filter(task => task.status === "Complete").length;
+  const completedTask = task?.filter(t => t.status === "Complete").length || 0;
   const todayNotes = notes.filter(note => new Date(note.date).toDateString() === Today).length;
   const totalItems = task.length + notes.length;
   const productivity = totalItems === 0 ? 0 : Math.round(((completedTask + todayNotes) / totalItems) * 100);

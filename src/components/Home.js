@@ -14,13 +14,14 @@ function Home() {
     const fetchData = async () => {
       await getNotes();
       await getTask();
+      // eslint-disable-next-line 
     };
-
+    // eslint-disable-next-line 
     fetchData();
-  }, []);
+  }, [getNotes, getTask]);
   const Today = new Date().toDateString();
   const completedTask = task?.filter(t => t.status === "Complete").length || 0;
-  const todayNotes = notes.filter(note => new Date(note.date).toDateString() === Today).length;
+  const todayNotes = notes?.filter(note => new Date(note.date).toDateString() === Today).length;
   const totalItems = task.length + notes.length;
   const productivity = totalItems === 0 ? 0 : Math.round(((completedTask + todayNotes) / totalItems) * 100);
 

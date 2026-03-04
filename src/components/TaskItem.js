@@ -6,7 +6,41 @@ import { toast } from "react-toastify";
 function TaskItem(props) {
   const { task } = props;
   const context = useContext(taskContext);
-  const { deleteTask } = context;
+  const { deleteTask, updateTaskStatusInState} = context;
+  const Host = "http://localhost:8000"
+
+  const updateStatus = async () => {
+
+  // If already complete → do nothing
+  if (task.status === "Complete") {
+    toast.warn("Task is already completed")
+    return
+  }
+
+  try {
+    const response = await fetch(`${Host}/api/task/updateTask/${task._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token")
+      },
+      body: JSON.stringify({ status: "Complete" })
+    });
+
+    if (!response.ok) {
+      toast.error("Status update failed");
+      return;
+    }
+
+    toast.success("Task Completed ✅");
+     //  Update UI instantly without reload
+     // Optimistic UI Update 
+    updateTaskStatusInState(task._id);
+
+  } catch (error) {
+    console.log(error);
+  }
+};
   return (
     <>
 
@@ -18,7 +52,7 @@ function TaskItem(props) {
           </div>
           <div className="task-btn">
             <i className=
-              "fa-solid fa-check task-tick-btn"></i>
+              "fa-solid fa-check task-tick-btn" onClick={updateStatus}></i>
             <i className=
               "fa-regular fa-trash-can task-trash-btn" onClick={() => {
                 const success = deleteTask(task._id)

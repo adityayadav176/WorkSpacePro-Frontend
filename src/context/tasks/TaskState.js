@@ -9,6 +9,11 @@ const TaskState = (props) => {
     const taskInitial = [];
     const [task, setTask] = useState(taskInitial);
 
+    const updateTaskStatusInState = (id) => {
+        setTask(task.map(task =>
+            task._id === id ? { ...task, status: "Complete" } : task
+        ));
+    };
     // fetchAllTask
     const getTask = async () => {
         const response = await fetch(`${Host}/api/task/fetchAllTask`, {
@@ -34,6 +39,7 @@ const TaskState = (props) => {
             }
         })
         const json = await response.json()
+        console.log(json)
         const newTask = task.filter((task) => { return task._id !== id })
         setTask(newTask);
         setProgress(100)
@@ -55,7 +61,7 @@ const TaskState = (props) => {
     };
 
     return (
-        <taskContext.Provider value={{ task, getTask, setTask, deleteTask, addTask }}>
+        <taskContext.Provider value={{ task, getTask, setTask, deleteTask, addTask, updateTaskStatusInState }}>
             {props.children}
         </taskContext.Provider>
     );

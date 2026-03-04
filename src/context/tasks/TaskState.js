@@ -45,7 +45,20 @@ const TaskState = (props) => {
         setProgress(100)
     }
     // add task
-   
+    const addTask = async (title, description, status, priority) => {
+        setProgress(30)
+        const response = await fetch(`${Host}/api/task/addTask`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({ title, description, priority, status })
+        });
+        const json = await response.json();
+        setTask((prev) => [...prev, json.savedTask]);
+        setProgress(100)
+    };
 
     return (
         <taskContext.Provider value={{ task, getTask, setTask, deleteTask, addTask, updateTaskStatusInState }}>

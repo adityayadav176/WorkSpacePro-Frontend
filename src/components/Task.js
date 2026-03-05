@@ -13,6 +13,7 @@ function Task() {
   
   useEffect(() => {
    getTask();
+    // eslint-disable-next-line
   }, [])
   
 

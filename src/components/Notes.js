@@ -13,6 +13,7 @@ function Notes() {
   const {notes, getNotes ,updateNote} = context; 
   useEffect(() => {
    getNotes();
+    // eslint-disable-next-line
   }, [])
   
   const [showForm, setShowForm] = useState(false);

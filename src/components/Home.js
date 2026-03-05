@@ -16,6 +16,7 @@ function Home() {
       await getTask();
     };
     fetchData();
+     // eslint-disable-next-line
   }, []);
   const Today = new Date().toDateString();
   const completedTask = task?.filter(t => t.status === "Complete").length || 0;

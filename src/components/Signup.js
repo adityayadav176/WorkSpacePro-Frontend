@@ -18,7 +18,8 @@ function Signup() {
         },
         body: JSON.stringify(credentials)
       })
-      const json = response.json()
+      const json = await response.json()
+      console.log(json)
       if (response.ok) {
         toast.success("Signup Successfull")
         navigate('/')
@@ -77,7 +78,7 @@ function Signup() {
                 <input type="tel" required maxLength={10} name="mobileNo" autoComplete='off' onChange={onChange} />
                 <label>MobileNo</label>
               </div>
-              <button className='primary-btn' onClick={handleClick}>Login</button>
+              <button className='primary-btn' onClick={handleClick}>Signup</button>
             </form>
           </div>
         </div>

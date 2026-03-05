@@ -6,7 +6,6 @@ import './Css/Signup.css'
 
 function Signup() {
   const navigate = useNavigate();
-  const host = "http://localhost:8000";
   const [credentials, setCredentials] = useState({ email: "", password: "", mobileNo: "", name: "" })
   const handleClick = async (e) => {
     e.preventDefault();

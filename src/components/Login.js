@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Login() {
-    const host = "http://localhost:8000";
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({ email: "", password: "", mobileNo: "" })
     const onChange = (e) => {
@@ -18,7 +17,7 @@ function Login() {
             return;
         }
         try {
-            const response = await fetch(`${host}/api/auth/login`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -37,6 +36,7 @@ function Login() {
             toast.error("Server not running or CORS issue")
         }
     }
+    console.log(process.env.REACT_APP_BACKEND_URL)
 
     return (
         <>

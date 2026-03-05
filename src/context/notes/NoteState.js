@@ -3,9 +3,9 @@ import noteContext from "./noteContext";
 import progressContext from "../Progress/progressContext";
 
 const NoteState = (props) => {
+  const host = process.env.REACT_APP_BACKEND_URL;
   const ProgressContext = useContext(progressContext)
   const { setProgress } = ProgressContext;
-  const host = "http://localhost:8000";
   const notesInitial = []
 
    // get all notes  

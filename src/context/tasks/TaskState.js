@@ -5,7 +5,7 @@ import progressContext from "../Progress/progressContext";
 const TaskState = (props) => {
     const ProgressContext = useContext(progressContext)
     const { setProgress } = ProgressContext;
-    const Host = "http://localhost:8000"
+    const Host = process.env.REACT_APP_BACKEND_URL;
     const taskInitial = [];
     const [task, setTask] = useState(taskInitial);
 

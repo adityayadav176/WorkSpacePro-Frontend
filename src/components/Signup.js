@@ -11,7 +11,7 @@ function Signup() {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${host}/api/auth/Signup`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/Signup`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

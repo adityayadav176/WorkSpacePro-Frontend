@@ -7,7 +7,6 @@ function TaskItem(props) {
   const { task } = props;
   const context = useContext(taskContext);
   const { deleteTask, updateTaskStatusInState} = context;
-  const Host = "http://localhost:8000"
 
   const updateStatus = async () => {
 
@@ -18,7 +17,7 @@ function TaskItem(props) {
   }
 
   try {
-    const response = await fetch(`${Host}/api/task/updateTask/${task._id}`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/task/updateTask/${task._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

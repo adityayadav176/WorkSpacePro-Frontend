@@ -9,7 +9,7 @@ function NavBar() {
 
   useEffect(() => {
     const getUser = async () => {
-      const response = await fetch("http://localhost:8000/api/auth/getuser", {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/getuser`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

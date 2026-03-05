@@ -54,6 +54,7 @@ const NoteState = (props) => {
   const json = await response.json();
   const newNote = notes.filter((note) => {return note._id !== id})
   setNotes(newNote);
+  console.log(json)
   setProgress(100)
 }
 
@@ -71,6 +72,7 @@ const NoteState = (props) => {
     body: JSON.stringify({ title, description, tag })
   });
   const json = await response.json();
+  console.log(json)
 
   // CLIENT UPDATE
   let newNotes = JSON.parse(JSON.stringify(notes));

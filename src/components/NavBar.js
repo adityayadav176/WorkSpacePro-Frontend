@@ -1,35 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import "./Css/NavBar.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation  } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function NavBar() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  useEffect(() => {
-    const getUser = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/getuser`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
-      });
+ useEffect(() => {
+  const getUser = async () => {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/getuser`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+    });
 
-      const data = await response.json();
-      setUser(data);
-    };
+    const data = await response.json();
+    setUser(data);
+  };
 
-    if (localStorage.getItem("token")) {
-      getUser();
-    }else{
-      localStorage.removeItem('token')
-      navigate('/')
-      toast.error("Plz login to explore WorkSpace Pro")
-    }
-    // eslint-disable-next-line
-  }, []);
+  if (localStorage.getItem("token")) {
+    getUser();
+  } else {
+    localStorage.removeItem("token");
+    navigate("/");
+    toast.error("Plz login to explore WorkSpace Pro");
+  }
+// eslint-disable-next-line 
+}, [location]);
   const handleLogout = () => {
     localStorage.removeItem('token')
     toast.success("Logged out");

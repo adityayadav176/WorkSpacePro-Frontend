@@ -17,7 +17,7 @@ function Home() {
     };
     fetchData();
      // eslint-disable-next-line
-  }, []);
+  }, [getNotes, getTask]);
   const Today = new Date().toDateString();
   const completedTask = task?.filter(t => t.status === "Complete").length || 0;
   const todayNotes = notes?.filter(note => new Date(note.date).toDateString() === Today).length;

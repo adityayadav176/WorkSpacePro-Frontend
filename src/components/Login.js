@@ -36,7 +36,6 @@ function Login() {
             toast.error("Server not running or CORS issue")
         }
     }
-    console.log(process.env.REACT_APP_BACKEND_URL)
 
     return (
         <>
@@ -79,7 +78,7 @@ function Login() {
                                 <input type="tel" required maxLength={10} onChange={onChange} name="mobileNo" value={credentials.mobileNo} autoComplete='off' />
                                 <label>MobileNo</label>
                             </div>
-                            <button className='primary-btn' onClick={handleLogin}>Login</button>
+                            <button type="submit" className='primary-btn' onClick={handleLogin}>Login</button>
                         </form>
                     </div>
                 </div>

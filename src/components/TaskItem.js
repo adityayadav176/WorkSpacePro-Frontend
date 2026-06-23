@@ -2,42 +2,34 @@ import React, { useContext } from 'react'
 import './Css/TaskItem.css'
 import taskContext from '../context/tasks/taskContext';
 import { toast } from "react-toastify";
+import api from "../axios/api.js";
 
 function TaskItem(props) {
   const { task } = props;
   const context = useContext(taskContext);
   const { deleteTask, updateTaskStatusInState} = context;
 
-  const updateStatus = async () => {
-
-  // If already complete → do nothing
+ const updateStatus = async () => {
   if (task.status === "Complete") {
-    toast.warn("Task is already completed")
-    return
+    toast.warn("Task is already completed");
+    return;
   }
 
   try {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/task/updateTask/${task._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token")
-      },
-      body: JSON.stringify({ status: "Complete" })
-    });
+    const res = await api.patch(
+      `/api/task/updateTask/${task._id}`,
+      { status: "Complete" },
+      {
+        withCredentials: true,
+      }
+    );
 
-    if (!response.ok) {
-      toast.error("Status update failed");
-      return;
-    }
+    toast.success("Task Completed");
 
-    toast.success("Task Completed ✅");
-     //  Update UI instantly without reload
-     // Optimistic UI Update 
     updateTaskStatusInState(task._id);
 
   } catch (error) {
-    console.log(error);
+    toast.error(error?.response?.data?.message || "Status update failed");
   }
 };
   return (

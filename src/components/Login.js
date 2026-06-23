@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Css/Login.css'
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 function Login() {
     const navigate = useNavigate();
@@ -9,46 +10,46 @@ function Login() {
     const onChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
+const handleLogin = async (e) => {
+    e.preventDefault();
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+    if (!credentials.password) {
+        toast.error("Password is required");
+        return;
+    }
 
-        if (!credentials.password) {
-            toast.error("Password is required");
-            return;
-        }
-
-        if (!credentials.email && !credentials.mobileNo) {
-            toast.error("Email or Mobile Number is required");
-            return;
-        }
-
-        try {
-            const response = await fetch(
-                `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
-                {
-                    method: "POST",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(credentials)
-                }
-            );
-
-            const json = await response.json();
-
-            if (response.ok) {
-                toast.success("Login Successful");
-                navigate("/dashboard");
-            } else {
-                toast.error(json.message || "Invalid Credentials");
+    if (!credentials.email && !credentials.mobileNo) {
+        toast.error("Email or Mobile Number is required");
+        return;
+    }
+    
+    try {
+        const response = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
+            credentials,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
             }
-        } catch (error) {
-            console.error(error);
-            toast.error("Server error or CORS issue");
-        }
-    };
+        );
+
+        toast.success(
+            response.data.message || "Login Successful"
+        );
+
+        navigate("/Dashboard");
+
+    } catch (error) {
+        console.error(error);
+
+        toast.error(
+            error.response?.data?.message ||
+            error.message ||
+            "Login Failed"
+        );
+    }
+};
 
     return (
         <>

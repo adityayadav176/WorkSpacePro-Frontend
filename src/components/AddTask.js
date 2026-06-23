@@ -8,21 +8,36 @@ function AddTask(props) {
     const { closeForm } = props;
     const context = useContext(taskContext);
     const { addTask } = context;
-    const [task, setTask] = useState({ title: "", description: "", priority: "Low", status: "Pending" })
+    const [task, setTask] = useState({ title: "", description: "", priority: "low", status: "pending" })
 
-    const HandleClick = () => {
-        if (!task.title.trim() || !task.description.trim()) {
-             toast.error("All Fields Are Required");
-            return;
-        }
-        const success = addTask(task.title, task.description, task.status, task.priority)
-        if (success) {
-            toast.success("Task Added Successfully!");
-        } else {
-            toast.error("Failed to add task");
-        }
-        closeForm()
+    const HandleClick = async () => {
+    if (!task.title.trim() || !task.description.trim()) {
+        toast.error("All Fields Are Required");
+        return;
     }
+
+    try {
+        await addTask(
+            task.title,
+            task.description,
+            task.status,
+            task.priority
+        );
+
+        toast.success("Task Added Successfully!");
+        closeForm();
+
+        setTask({
+            title: "",
+            description: "",
+            priority: "low",
+            status: "pending"
+        });
+
+    } catch (error) {
+        toast.error("Failed to add task");
+    }
+};
     const onChange = (e) => {
         setTask({ ...task, [e.target.name]: e.target.value });
     }
@@ -44,16 +59,16 @@ function AddTask(props) {
                             <span>Priority</span>
                             <select className='priorityData' onChange={onChange} name='priority'>
                                 <option value="Low">Low</option>
-                                <option value="Medium">Medium</option>
-                                <option value="High">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
                             </select>
                         </div>
                         <div className="Status">
                             <span>Status</span>
                             <select className='StatusData' name='status' onChange={onChange}>
-                                <option value="Pending">Pending</option>
-                                <option value="In Process">In Process</option>
-                                <option value="Complete">Complete</option>
+                                <option value="pending">Pending</option>
+                                <option value="in-progress">In Process</option>
+                                <option value="completed">Complete</option>
                             </select>
                         </div>
                     </div>

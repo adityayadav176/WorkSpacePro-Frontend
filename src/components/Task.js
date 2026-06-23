@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import NavBar from './NavBar'
 import "./Css/Task.css"
 import TaskItem from './TaskItem'
@@ -9,34 +9,39 @@ import AddTask from './AddTask';
 function Task() {
   const [AddTaskModal, setAddTaskModal] = useState(false)
   const context = useContext(taskContext);
-  const {getTask, task} = context;
-  
+  const { getTask, task } = context;
+
   useEffect(() => {
-   getTask();
-    // eslint-disable-next-line
-  }, [])
-  
+  const fetch = async () => {
+    await getTask();
+  };
+  fetch();
+}, [getTask]);
+
 
   return (
     <>
-      <NavBar/>
-       <div className="tasks-title-container">
-      <div className="tasks-nav">
-        <h2>Task Management</h2>
-        <p>Organize and track your tasks</p>
+      <NavBar />
+      <div className="tasks-title-container">
+        <div className="tasks-nav">
+          <h2>Task Management</h2>
+          <p>Organize and track your tasks</p>
+        </div>
+        <div className="btn">
+          <button className='add-Task' onClick={() => { setAddTaskModal(true) }}>
+            <i className=
+              "fa-solid fa-plus">
+            </i>New Task</button>
+        </div>
       </div>
-      <div className="btn">
-        <button className='add-Task' onClick={()=>{setAddTaskModal(true)}}>
-          <i className=
-"fa-solid fa-plus">
-          </i>New Task</button>
-      </div>
-      </div>
-      {AddTaskModal ? <AddTask closeForm={()=>{setAddTaskModal(false)}}/> : ""}
-      {task.map((task)=>{
-        return <TaskItem key={task._id} task={task}/>
-      })}
-      <Footer/>
+      {AddTaskModal ? <AddTask closeForm={() => { setAddTaskModal(false) }} /> : ""}
+      {(task || [])
+        .filter(Boolean)
+        .map((t) => (
+          <TaskItem key={t._id} task={t} />
+        ))
+      }
+      <Footer />
     </>
   )
 }

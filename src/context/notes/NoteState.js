@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import noteContext from "./noteContext";
 import progressContext from "../Progress/progressContext";
+import api from "../../axios/api.js"
 
 const NoteState = (props) => {
   const host = process.env.REACT_APP_BACKEND_URL;
@@ -11,19 +12,9 @@ const NoteState = (props) => {
    // get all notes  
 const getNotes = async () => {
   try {
-    const response = await fetch(
-      `${host}/api/notes/fetchAllNotes`,
-      {
-        method: "GET",
-        credentials: "include"
-      }
-    );
+    const response = await api.get("/api/notes/fetchAllNotes");
 
-    const json = await response.json();
-
-    if (response.ok) {
-      setNotes(json.data.notes);
-    }
+    setNotes(response.data.data.notes);
   } catch (error) {
     console.log(error);
   }
@@ -35,31 +26,16 @@ const addNote = async (title, description, tag) => {
   try {
     setProgress(30);
 
-    const response = await fetch(
-      `${host}/api/notes/addNote`,
-      {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          title,
-          description,
-          tag
-        })
-      }
-    );
+    const response = await api.post("/api/notes/addNote", {
+      title,
+      description,
+      tag
+    });
 
-    const json = await response.json();
-
-    if (response.ok) {
-      setNotes((prev) => [...prev, json.data]);
-    }
+    setNotes((prev) => [...prev, response.data.data]);
 
     setProgress(100);
   } catch (error) {
-    console.log(error);
     setProgress(100);
   }
 };
@@ -70,69 +46,41 @@ const deleteNote = async (noteId) => {
   try {
     setProgress(30);
 
-    const response = await fetch(
-      `${host}/api/notes/deleteNote/${noteId}`,
-      {
-        method: "DELETE",
-        credentials: "include"
-      }
-    );
+    await api.delete(`/api/notes/deleteNote/${noteId}`);
 
-    if (response.ok) {
-      setNotes((prev) =>
-        prev.filter((note) => note._id !== noteId)
-      );
-    }
+    setNotes((prev) =>
+      prev.filter((note) => note._id !== noteId)
+    );
 
     setProgress(100);
   } catch (error) {
-    console.log(error);
     setProgress(100);
   }
 };
 
   // EDIT NOTE
 
-const editNote = async (
-  noteId,
-  title,
-  description,
-  tag
-) => {
+const editNote = async (noteId, title, description, tag) => {
   try {
     setProgress(30);
 
-    const response = await fetch(
-      `${host}/api/notes/updateNote/${noteId}`,
+    const response = await api.patch(
+      `/api/notes/updateNote/${noteId}`,
       {
-        method: "PATCH",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          title,
-          description,
-          tag
-        })
+        title,
+        description,
+        tag
       }
     );
 
-    const json = await response.json();
-
-    if (response.ok) {
-      setNotes((prev) =>
-        prev.map((note) =>
-          note._id === noteId
-            ? json.data
-            : note
-        )
-      );
-    }
+    setNotes((prev) =>
+      prev.map((note) =>
+        note._id === noteId ? response.data.data : note
+      )
+    );
 
     setProgress(100);
   } catch (error) {
-    console.log(error);
     setProgress(100);
   }
 };

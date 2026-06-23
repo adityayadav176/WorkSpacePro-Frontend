@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import taskContext from "./taskContext";
 import progressContext from "../Progress/progressContext";
+import api from "../../axios/api.js"
 
 const TaskState = (props) => {
     const ProgressContext = useContext(progressContext);
@@ -10,15 +11,15 @@ const TaskState = (props) => {
 
     const [task, setTask] = useState([]);
 
-    const updateTaskStatusInState = (id) => {
-        setTask(
-            task.map((task) =>
-                task._id === id
-                    ? { ...task, status: "Complete" }
-                    : task
-            )
-        );
-    };
+   const updateTaskStatusInState = (id) => {
+    setTask((prevTasks) =>
+        prevTasks.map((task) =>
+            task._id === id
+                ? { ...task, status: "Complete" }
+                : task
+        )
+    );
+};
 
     // FETCH ALL TASKS
     const getTask = async () => {
@@ -50,7 +51,6 @@ const TaskState = (props) => {
         );
 
         const json = await response.json();
-        console.log(json);
 
         if (response.ok) {
             const newTask = task.filter(
@@ -64,37 +64,30 @@ const TaskState = (props) => {
     };
 
     // ADD TASK
-    const addTask = async (title, description, status, priority) => {
-        setProgress(30);
+ const addTask = async (title, description, status, priority) => {
+  try {
+    setProgress(30);
 
-        const response = await fetch(
-            `${Host}/api/task/addTask`,
-            {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    title,
-                    description,
-                    priority,
-                    status
-                })
-            }
-        );
+    const res = await api.post(
+      "/api/task/addTask",
+      {
+        title,
+        description,
+        status,
+        priority,
+      },
+      {
+        withCredentials: true,
+      }
+    );
 
-        const json = await response.json();
+    setTask((prev) => [...prev, res.data.data]);
 
-        if (response.ok) {
-            setTask((prev) => [
-                ...prev,
-                json.task
-            ]);
-        }
-
-        setProgress(100);
-    };
+    setProgress(100);
+  } catch (error) {
+    setProgress(100);
+  }
+};
 
     return (
         <taskContext.Provider

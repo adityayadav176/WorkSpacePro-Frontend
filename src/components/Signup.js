@@ -3,6 +3,7 @@ import "./Css/Login.css";
 import "./Css/Signup.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from "axios"
 
 function Signup() {
   const navigate = useNavigate();
@@ -23,69 +24,68 @@ function Signup() {
     }));
   };
 
-  const handleClick = async (e) => {
-    e.preventDefault();
+ const handleClick = async (e) => {
+  e.preventDefault();
 
-    const { name, email, password, mobileNo } = credentials;
+  const { name, email, password, mobileNo } = credentials;
 
-    // Validation
-    if (!name || !email || !password || !mobileNo) {
-      toast.error("All fields are required");
-      return;
-    }
+  if (!name || !email || !password || !mobileNo) {
+    toast.error("All fields are required");
+    return;
+  }
 
-    if (name.trim().length < 3) {
-      toast.error("Name must be at least 3 characters");
-      return;
-    }
+  if (name.trim().length < 3) {
+    toast.error("Name must be at least 3 characters");
+    return;
+  }
 
-    if (password.length < 8) {
-      toast.error("Password must be at least 8 characters");
-      return;
-    }
+  if (password.length < 8) {
+    toast.error("Password must be at least 8 characters");
+    return;
+  }
 
-    if (!/^\d{10}$/.test(mobileNo)) {
-      toast.error("Mobile number must be exactly 10 digits");
-      return;
-    }
+  if (!/^\d{10}$/.test(mobileNo)) {
+    toast.error("Mobile number must be exactly 10 digits");
+    return;
+  }
 
-    try {
-      setLoading(true);
+  try {
+    setLoading(true);
 
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(credentials),
-        }
-      );
-
-      const json = await response.json();
-
-      if (response.ok) {
-        toast.success("Signup Successful");
-
-        setCredentials({
-          name: "",
-          email: "",
-          password: "",
-          mobileNo: "",
-        });
-
-        navigate("/");
-      } else {
-        toast.error(json.message || "Signup Failed");
+    const response = await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`,
+      credentials,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("Server Error or CORS Issue");
-    } finally {
-      setLoading(false);
-    }
-  };
+    );
+
+    toast.success(response.data.message || "Signup Successful");
+
+    setCredentials({
+      name: "",
+      email: "",
+      password: "",
+      mobileNo: "",
+    });
+
+    navigate("/");
+
+  } catch (error) {
+    console.error(error);
+
+    toast.error(
+      error.response?.data?.message ||
+      error.message ||
+      "Signup Failed"
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="SignupContainer">

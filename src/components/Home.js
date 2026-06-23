@@ -6,18 +6,16 @@ import noteContext from '../context/notes/noteContext';
 import taskContext from '../context/tasks/taskContext';
 
 function Home() {
-  const NotesContext = useContext(noteContext);
-  const { notes, getNotes } = NotesContext;
-  const TaskContext = useContext(taskContext);
-  const { task, getTask } = TaskContext;
+  const { notes = [], getNotes } = useContext(noteContext);
+  const { task = [], getTask } = useContext(taskContext);
   useEffect(() => {
     const fetchData = async () => {
       await getNotes();
       await getTask();
     };
+
     fetchData();
-     // eslint-disable-next-line
-  }, [getNotes, getTask]);
+  }, []);
   const Today = new Date().toDateString();
   const completedTask = task?.filter(t => t.status === "Complete").length || 0;
   const todayNotes = notes?.filter(note => new Date(note.date).toDateString() === Today).length;

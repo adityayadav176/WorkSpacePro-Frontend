@@ -12,30 +12,43 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        if (!credentials.email || !credentials.password || !credentials.mobileNo) {
-            toast.error("All Fields Are Required");
+
+        if (!credentials.password) {
+            toast.error("Password is required");
             return;
         }
+
+        if (!credentials.email && !credentials.mobileNo) {
+            toast.error("Email or Mobile Number is required");
+            return;
+        }
+
         try {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(credentials),
-            })
-            const json = await response.json()
+            const response = await fetch(
+                `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(credentials)
+                }
+            );
+
+            const json = await response.json();
+
             if (response.ok) {
-                toast.success("Login Successfull")
-                localStorage.setItem("token", json.authtoken);
-                navigate('/dashboard')
+                toast.success("Login Successful");
+                navigate("/dashboard");
             } else {
-                toast.error("Invalid Credentials");
+                toast.error(json.message || "Invalid Credentials");
             }
         } catch (error) {
-            toast.error("Server not running or CORS issue")
+            console.error(error);
+            toast.error("Server error or CORS issue");
         }
-    }
+    };
 
     return (
         <>
@@ -60,7 +73,7 @@ function Login() {
                 </div>
                 <div className="LoginRight">
                     <div className="AuthenticationBtn">
-                        <button className='LoginBtn' onClick={() => {navigate("/signup") }}>Signup</button>
+                        <button className='LoginBtn' onClick={() => { navigate("/signup") }}>Signup</button>
                     </div>
                     <div className="LoginForm">
                         <form>

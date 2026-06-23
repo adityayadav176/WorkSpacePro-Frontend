@@ -9,85 +9,132 @@ const NoteState = (props) => {
   const notesInitial = []
 
    // get all notes  
-  const getNotes = async () => {
-    // API CALL
-    const response = await fetch(`${host}/api/notes/fetchAllNotes`, {
-      method: "GET",
-      headers: {
-        'Content-Type': "application/json",
-        'auth-token': localStorage.getItem("token")
+const getNotes = async () => {
+  try {
+    const response = await fetch(
+      `${host}/api/notes/fetchAllNotes`,
+      {
+        method: "GET",
+        credentials: "include"
       }
-    });
+    );
+
     const json = await response.json();
-    setNotes(json)
+
+    if (response.ok) {
+      setNotes(json.data.notes);
+    }
+  } catch (error) {
+    console.log(error);
   }
+};
 
   // ADD NOTE
 
-  const addNote = async (title, description, tag) => {
-    // API CALL
-    setProgress(30)
-    const response = await fetch(`${host}/api/notes/addNote`, {
-      method: "POST",
-      headers: {
-        'Content-Type': "application/json",
-        'auth-token': localStorage.getItem("token")
-      },
-      body: JSON.stringify({ title, description, tag })
-    });
+const addNote = async (title, description, tag) => {
+  try {
+    setProgress(30);
+
+    const response = await fetch(
+      `${host}/api/notes/addNote`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          tag
+        })
+      }
+    );
+
     const json = await response.json();
-    setNotes((prevNotes) => prevNotes.concat(json));
-    setProgress(100)
+
+    if (response.ok) {
+      setNotes((prev) => [...prev, json.data]);
+    }
+
+    setProgress(100);
+  } catch (error) {
+    console.log(error);
+    setProgress(100);
   }
+};
 
   // DELETE NOTE
 
- const deleteNote = async (id) => {
-    setProgress(30)
-  const response =  await fetch(`${host}/api/notes/deleteNote/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': "application/json",
-      'auth-token': localStorage.getItem("token")
+const deleteNote = async (noteId) => {
+  try {
+    setProgress(30);
+
+    const response = await fetch(
+      `${host}/api/notes/deleteNote/${noteId}`,
+      {
+        method: "DELETE",
+        credentials: "include"
+      }
+    );
+
+    if (response.ok) {
+      setNotes((prev) =>
+        prev.filter((note) => note._id !== noteId)
+      );
     }
-  });
-  const json = await response.json();
-  const newNote = notes.filter((note) => {return note._id !== id})
-  setNotes(newNote);
-  console.log(json)
-  setProgress(100)
-}
+
+    setProgress(100);
+  } catch (error) {
+    console.log(error);
+    setProgress(100);
+  }
+};
 
   // EDIT NOTE
 
- const editNote = async (id, title, description, tag) => {
-  setProgress(30)
-  // API CALL
-  const response = await fetch(`${host}/api/notes/updateNote/${id}`, {
-    method: "PUT",  // ideally should be PUT
-    headers: {
-      'Content-Type': "application/json",
-      'auth-token': localStorage.getItem("token")
-    },
-    body: JSON.stringify({ title, description, tag })
-  });
-  const json = await response.json();
-  console.log(json)
+const editNote = async (
+  noteId,
+  title,
+  description,
+  tag
+) => {
+  try {
+    setProgress(30);
 
-  // CLIENT UPDATE
-  let newNotes = JSON.parse(JSON.stringify(notes));
+    const response = await fetch(
+      `${host}/api/notes/updateNote/${noteId}`,
+      {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          tag
+        })
+      }
+    );
 
-  for (let i = 0; i < newNotes.length; i++) {
-    if (newNotes[i]._id === id) {
-      newNotes[i].title = title;
-      newNotes[i].description = description;
-      newNotes[i].tag = tag;
-      break;
+    const json = await response.json();
+
+    if (response.ok) {
+      setNotes((prev) =>
+        prev.map((note) =>
+          note._id === noteId
+            ? json.data
+            : note
+        )
+      );
     }
-  }
 
-  setNotes(newNotes);
-  setProgress(100)
+    setProgress(100);
+  } catch (error) {
+    console.log(error);
+    setProgress(100);
+  }
 };
 
  const shortText = (text, maxLength) => {

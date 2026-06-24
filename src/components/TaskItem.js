@@ -9,7 +9,7 @@ function TaskItem(props) {
   const context = useContext(taskContext);
   const { deleteTask, updateTaskStatusInState} = context;
 
- const updateStatus = async () => {
+const updateStatus = async () => {
   if (task.status === "Complete") {
     toast.warn("Task is already completed");
     return;
@@ -18,15 +18,15 @@ function TaskItem(props) {
   try {
     const res = await api.patch(
       `/api/task/updateTask/${task._id}`,
-      { status: "Complete" },
-      {
-        withCredentials: true,
-      }
+      { status: "Complete" }
     );
 
     toast.success("Task Completed");
 
-    updateTaskStatusInState(task._id);
+    const updatedTaskFromServer = res.data?.data; 
+    if (updatedTaskFromServer) {
+        updateTaskStatusInState(task._id, updatedTaskFromServer);
+    }
 
   } catch (error) {
     toast.error(error?.response?.data?.message || "Status update failed");

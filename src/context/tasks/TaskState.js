@@ -1,93 +1,88 @@
 import React, { useState, useContext } from "react";
 import taskContext from "./taskContext";
 import progressContext from "../Progress/progressContext";
-import api from "../../axios/api.js"
+import api from "../../axios/api.js";
 
 const TaskState = (props) => {
     const ProgressContext = useContext(progressContext);
     const { setProgress } = ProgressContext;
 
-    const Host = process.env.REACT_APP_BACKEND_URL;
-
     const [task, setTask] = useState([]);
 
-   const updateTaskStatusInState = (id) => {
-    setTask((prevTasks) =>
-        prevTasks.map((task) =>
-            task._id === id
-                ? { ...task, status: "Complete" }
-                : task
-        )
-    );
+    const updateTaskStatusInState = (TaskId, updatedTask) => {
+    setTask((prevTasks) => {
+        if (Array.isArray(prevTasks)) {
+            return prevTasks.map((t) => (t._id === TaskId ? updatedTask : t));
+        }
+        
+        if (prevTasks && Array.isArray(prevTasks.tasks)) {
+            return {
+                ...prevTasks,
+                tasks: prevTasks.tasks.map((t) => (t._id === TaskId ? updatedTask : t))
+            };
+        }
+
+        return prevTasks;
+    });
 };
 
     // FETCH ALL TASKS
-    const getTask = async () => {
-        const response = await fetch(
-            `${Host}/api/task/fetchAllTask`,
-            {
-                method: "GET",
-                credentials: "include"
-            }
-        );
-
-        const json = await response.json();
-
-        if (response.ok) {
-            setTask(json.data.tasks);
-        }
-    };
+ const getTask = async () => {
+  try {
+    const res = await api.get("/api/task/fetchAllTask");
+    if (res.data && res.data.data && Array.isArray(res.data.data.tasks)) {
+        setTask(res.data.data.tasks); 
+    }
+  } catch (error) {
+    console.error("Failed to load tasks:", error);
+  }
+};
 
     // DELETE TASK
     const deleteTask = async (id) => {
-        setProgress(30);
+        try {
+            setProgress(30);
+            const res = await api.delete(`/api/task/deleteTask/${id}`);
 
-        const response = await fetch(
-            `${Host}/api/task/deleteTask/${id}`,
-            {
-                method: "DELETE",
-                credentials: "include"
+            if (res.data) {
+                setTask((prev) => {
+                    if (!Array.isArray(prev)) return [];
+                    return prev.filter((t) => t._id !== id);
+                });
             }
-        );
-
-        const json = await response.json();
-
-        if (response.ok) {
-            const newTask = task.filter(
-                (task) => task._id !== id
-            );
-
-            setTask(newTask);
+            setProgress(100);
+        } catch (error) {
+            console.error("Error deleting task:", error);
+            setProgress(100);
         }
-
-        setProgress(100);
     };
 
     // ADD TASK
- const addTask = async (title, description, status, priority) => {
-  try {
-    setProgress(30);
+    const addTask = async (title, description, status, priority) => {
+        try {
+            setProgress(30);
 
-    const res = await api.post(
-      "/api/task/addTask",
-      {
-        title,
-        description,
-        status,
-        priority,
-      },
-      {
-        withCredentials: true,
-      }
-    );
+            const res = await api.post("/api/task/addTask", {
+                title,
+                description,
+                status,
+                priority,
+            });
 
-    setTask((prev) => [...prev, res.data.data]);
+            const newTask = res.data.data || res.data.task;
 
-    setProgress(100);
-  } catch (error) {
-    setProgress(100);
-  }
-};
+            if (newTask) {
+                setTask((prev) => {
+                    if (!Array.isArray(prev)) return [newTask];
+                    return [...prev, newTask];
+                });
+            }
+
+            setProgress(100);
+        } catch (error) {
+            setProgress(100);
+        }
+    };
 
     return (
         <taskContext.Provider

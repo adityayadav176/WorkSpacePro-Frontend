@@ -24,24 +24,21 @@ const handleLogin = async (e) => {
     }
     
     try {
-        const response = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
-            credentials,
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
+    const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
+        credentials,
+        {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            withCredentials: true // 🌟 CRITICAL: Tells Axios to accept and save the session cookie
+        }
+    );
 
-        toast.success(
-            response.data.message || "Login Successful"
-        );
-
-        navigate("/Dashboard");
+    toast.success(response.data.message || "Login Successful");
+    navigate("/Dashboard");
 
     } catch (error) {
-        console.error(error);
 
         toast.error(
             error.response?.data?.message ||

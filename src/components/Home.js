@@ -15,6 +15,7 @@ function Home() {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const Today = new Date().toDateString();
   const completedTask = task?.filter(t => t.status === "Complete").length || 0;

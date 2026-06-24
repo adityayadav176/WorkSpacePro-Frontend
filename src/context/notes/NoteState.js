@@ -4,7 +4,6 @@ import progressContext from "../Progress/progressContext";
 import api from "../../axios/api.js"
 
 const NoteState = (props) => {
-  const host = process.env.REACT_APP_BACKEND_URL;
   const ProgressContext = useContext(progressContext)
   const { setProgress } = ProgressContext;
   const notesInitial = []

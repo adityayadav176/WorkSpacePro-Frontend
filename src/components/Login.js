@@ -31,7 +31,7 @@ const handleLogin = async (e) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            withCredentials: true // 🌟 CRITICAL: Tells Axios to accept and save the session cookie
+            withCredentials: true
         }
     );
 

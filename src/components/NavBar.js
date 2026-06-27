@@ -26,7 +26,7 @@ function NavBar() {
     };
 
     getUser();
-  }, []);
+  }, [navigate, location]);
 
   const handleLogout = async () => {
     try {

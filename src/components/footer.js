@@ -30,10 +30,10 @@ function Footer() {
             "footer-links">
             <h4>Product</h4>
             <ul>
-              <li><Link to="/About">Features</Link></li>
+              <li><Link to="/about">Features</Link></li>
               <li><Link to="/task">Task Management</Link></li>
               <li><Link to="/notes">Notes Management</Link></li>
-              <li><Link to="/Dashboard">Dashboard</Link></li>
+              <li><Link to="/dashboard">Dashboard</Link></li>
               <li><Link to="#">Documentation</Link></li>
             </ul>
           </div>
@@ -42,7 +42,7 @@ function Footer() {
             "footer-links">
             <h4>Company</h4>
             <ul>
-              <li><Link to="/About">About Us</Link></li>
+              <li><Link to="/about">About Us</Link></li>
               <li><Link to="#">Contact</Link></li>
               <li><Link to="#">Privacy Policy</Link></li>
               <li><Link to="#">Terms of Service</Link></li>

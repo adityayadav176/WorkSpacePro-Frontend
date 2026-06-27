@@ -32,9 +32,10 @@ function App() {
     const titles = {
       "/": "Login",
       "/signup": "Signup",
-      "/Dashboard": "Dashboard",
-      "/Notes": "Notes",
-      "/Task": "Task"
+      "/dashboard": "Dashboard",
+      "/notes": "Notes",
+      "/task": "Task",
+      "/about":"About",
     };
 
     const timer = setTimeout(() => {
@@ -62,12 +63,12 @@ function App() {
           />
           <LoadingBar color="blue" progress={progress} onLoaderFinished={() => setProgress(0)} height={3} shadow={false} />
           <Routes>
-            <Route path="/Dashboard" element={<><NavBar/><Home /><Footer/></>} />
+            <Route path="/dashboard" element={<><NavBar/><Home /><Footer/></>} />
             <Route path="/notes" element={<><NavBar/><Notes /><Footer/></>} />
             <Route path="/task" element={<><NavBar/><Task /><Footer/></>} />
-            <Route path="/Signup" element={<Signup />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Login />} />
-            <Route path="/About" element={<><NavBar /> <About /><Footer/></>} />
+            <Route path="/about" element={<><NavBar /> <About /><Footer/></>} />
           </Routes>
         </NoteState>
       </TaskState>

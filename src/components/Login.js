@@ -36,7 +36,7 @@ const handleLogin = async (e) => {
     );
 
     toast.success(response.data.message || "Login Successful");
-    navigate("/Dashboard");
+    navigate("/dashboard");
 
     } catch (error) {
 

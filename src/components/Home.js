@@ -16,7 +16,7 @@ function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const Today = new Date().toDateString();
-  const completedTask = task?.filter(t => t.status === "Complete").length || 0;
+  const completedTask = task?.filter(t => t.status === "completed").length || 0;
   const todayNotes = notes?.filter(note => new Date(note.date).toDateString() === Today).length;
   const totalItems = task.length + notes.length;
   const productivity = totalItems === 0 ? 0 : Math.round(((completedTask + todayNotes) / totalItems) * 100);

@@ -18,7 +18,7 @@ const updateStatus = async () => {
   try {
     const res = await api.patch(
       `/api/task/updateTask/${task._id}`,
-      { status: "Complete" }
+      { status: "completed" }
     );
 
     toast.success("Task Completed");
@@ -67,7 +67,7 @@ const updateStatus = async () => {
           <div className="task-date">
             <i className=
               "fa-regular fa-clock"></i>
-            {new Date(task.date).toLocaleDateString()}
+            {new Date(task.createdAt).toLocaleDateString()}
           </div>
         </div>
       </div>

@@ -1,6 +1,4 @@
 import React, { useContext, useEffect } from 'react'
-import NavBar from '../components/NavBar';
-import Footer from './footer';
 import "./Css/dashboard.css";
 import noteContext from '../context/notes/noteContext';
 import taskContext from '../context/tasks/taskContext';
@@ -26,7 +24,6 @@ function Home() {
 
   return (
     <>
-      <NavBar />
       <div className="tasks-title-container">
         <div className="tasks-nav">
           <h2>Dashboard Overview</h2>
@@ -79,7 +76,6 @@ function Home() {
         </div>
 
       </div>
-      <Footer />
     </>
   )
 }

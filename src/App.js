@@ -1,4 +1,3 @@
-import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -17,6 +16,9 @@ import TaskState from './context/tasks/TaskState';
 import LoadingBar from "react-top-loading-bar";
 import React, { useContext, useEffect } from 'react';
 import ProgressContext from './context/Progress/progressContext';
+import About from "./components/About.js"
+import NavBar from './components/NavBar.js';
+import Footer from './components/footer.js';
 
 
 
@@ -60,11 +62,12 @@ function App() {
           />
           <LoadingBar color="blue" progress={progress} onLoaderFinished={() => setProgress(0)} height={3} shadow={false} />
           <Routes>
-            <Route path="/Dashboard" element={<Home />} />
-            <Route path="/notes" element={<Notes />} />
-            <Route path="/task" element={<Task />} />
+            <Route path="/Dashboard" element={<><NavBar/><Home /><Footer/></>} />
+            <Route path="/notes" element={<><NavBar/><Notes /><Footer/></>} />
+            <Route path="/task" element={<><NavBar/><Task /><Footer/></>} />
             <Route path="/Signup" element={<Signup />} />
             <Route path="/" element={<Login />} />
+            <Route path="/About" element={<><NavBar /> <About /><Footer/></>} />
           </Routes>
         </NoteState>
       </TaskState>

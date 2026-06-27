@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import "./Css/NavBar.css";
-import { NavLink, useNavigate, useLocation  } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../axios/api.js"
+import Profile from "./Profile.js"
 
 function NavBar() {
   const [user, setUser] = useState(null);
+  const [showProfile, setShowProfile] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-useEffect(() => {
+  useEffect(() => {
     const getUser = async () => {
       try {
         const res = await api.get("/api/auth/me", {
@@ -24,7 +26,7 @@ useEffect(() => {
     };
 
     getUser();
-  }, [location, navigate]);
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -55,11 +57,22 @@ useEffect(() => {
             <li><NavLink to="/Dashboard" ><i className="fa-regular fa-user"></i><span>Dashboard</span></NavLink></li>
             <li><NavLink to="/Task" ><i className="fa-regular fa-square-check"></i><span>Tasks</span></NavLink></li>
             <li><NavLink to="/Notes" ><i className="fa-regular fa-file-lines"></i><span>Notes</span></NavLink></li>
-            {user && (<div className="user-section">
-              <p className='userName'>{user.name}</p>
-              <p className='userEmail'>{user.email}</p>
-            </div>
-            )}
+            <li><NavLink to="/about"><i className="fa-solid fa-rocket"></i><span>About</span></NavLink></li>
+            <li>
+              <button
+                className="profile-btn"
+                onClick={() => setShowProfile(true)}
+              >
+                <i className="fa-regular fa-circle-user"></i>
+                <span>Profile</span>
+              </button>
+            </li>
+
+            <Profile
+              open={showProfile}
+              onClose={() => setShowProfile(false)}
+              user={user}
+            />
             <li onClick={() => { setShowConfirm(true) }} className='LogoutBtn'> <i className=
               "fa-solid fa-arrow-right-from-bracket"></i><span className='logout'>Logout</span></li>
           </ul>

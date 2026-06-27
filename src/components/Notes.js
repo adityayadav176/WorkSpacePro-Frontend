@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import NavBar from '../components/NavBar';
 import NoteItem from '../components/noteItem';
 import "./Css/notes.css";
-import Footer from './footer';
 import noteContext from "../context/notes/noteContext"
 import AddNote from './AddNote';
 import EditingNote from './EditingNote';
@@ -20,8 +18,6 @@ function Notes() {
 
   return (
     <>
-
-      <NavBar />
       <div className="notes-title-container">
       <div className="notes-nav">
         <h2>Notes & Documentation</h2>
@@ -37,13 +33,31 @@ function Notes() {
       </div>
      {showForm ? <AddNote closeForm={() => setShowForm(false)} /> : updateNote && <EditingNote/>}
       <div className="notes-container">
-        {notes.map((note)=>{
-        return <NoteItem key={note._id} note={note}/>
-      })}
-        
+  {notes.length > 0 ? (
+    notes.map((note) => (
+      <NoteItem key={note._id} note={note} />
+    ))
+  ) : (
+    <div className="empty-wrapper">
+      <div className="empty-notes">
+        <i className="fa-regular fa-note-sticky"></i>
+
+        <h2>Your Notebook is Empty</h2>
+
+        <p>
+          Every great idea starts with a single note. Capture your thoughts,
+          organize your plans, and build your productivity journey with
+          <strong> WorkSpace Pro</strong>.
+        </p>
+
+        <span>
+          Click <strong>"New Note"</strong> above to create your first note.
+        </span>
       </div>
+    </div>
+  )}
+</div>
      
-       <Footer/>
     </>
   )
 }

@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import NavBar from './NavBar'
 import "./Css/Task.css"
 import TaskItem from './TaskItem'
-import Footer from './footer';
 import taskContext from '../context/tasks/taskContext';
 import AddTask from './AddTask';
 
@@ -21,7 +19,6 @@ function Task() {
 
   return (
     <>
-      <NavBar />
       <div className="tasks-title-container">
         <div className="tasks-nav">
           <h2>Task Management</h2>
@@ -35,13 +32,33 @@ function Task() {
         </div>
       </div>
       {AddTaskModal ? <AddTask closeForm={() => { setAddTaskModal(false) }} /> : ""}
-      {(task || [])
-        .filter(Boolean)
-        .map((t) => (
-          <TaskItem key={t._id} task={t} />
-        ))
-      }
-      <Footer />
+     {task && task.length > 0 ? (
+  <div className="task-container">
+    {task
+      .filter(Boolean)
+      .map((t) => (
+        <TaskItem key={t._id} task={t} />
+      ))}
+  </div>
+) : (
+  <div className="empty-task-wrapper">
+    <div className="empty-task">
+      <i className="fa-regular fa-square-check"></i>
+
+      <h2>No Tasks Available</h2>
+
+      <p>
+        Every successful project begins with a well-planned task.
+        Stay organized, prioritize your work, and accomplish your goals
+        efficiently with <strong>WorkSpace Pro</strong>.
+      </p>
+
+      <span>
+        Click <strong>"New Task"</strong> above to create your first task.
+      </span>
+    </div>
+  </div>
+)}
     </>
   )
 }

@@ -69,13 +69,13 @@ function Footer() {
             rel="noopener noreferrer"> <i className="fa-brands fa-instagram"></i></a>
             <a href="  https://www.linkedin.com/in/aditya-yadav-431675370/?skipRedirect=true" target="_blank" 
             rel="noopener noreferrer"><i className="fa-brands fa-linkedin"></i></a>
-            <a href="#" target="_blank" 
+            <Link to="#" target="_blank" 
             rel="noopener noreferrer"><i className="fa-brands fa-whatsapp" target="_blank" 
-            rel="noopener noreferrer"></i></a>
+            rel="noopener noreferrer"></i></Link>
             <a href="https://github.com/adityayadav176" target="_blank" 
             rel="noopener noreferrer"><i className="fa-brands fa-github"></i></a>
-            <a href="#" target="_blank" 
-            rel="noopener noreferrer"><i className="fa-brands fa-youtube"></i></a>
+            <Link to="#" target="_blank" 
+            rel="noopener noreferrer"><i className="fa-brands fa-youtube"></i></Link>
           </div>
         </div>
       </footer>

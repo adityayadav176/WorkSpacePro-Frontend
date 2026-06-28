@@ -174,7 +174,7 @@ function Login() {
                                 <p className="form-subtitle">Verification code sent to <strong>{forgotEmail}</strong></p>
                                 
                                 <div className="input-group">
-                                    <input type="text" inputMode="numeric" autoComplete="one-time-code" required value={otp} onChange={(e) => setOtp(e.target.value)} autoComplete='off' />
+                                    <input type="text" inputMode="numeric" autoComplete="one-time-code" required value={otp} onChange={(e) => setOtp(e.target.value)} />
                                     <label>Enter 6-Digit OTP</label>
                                 </div>
 

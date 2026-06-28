@@ -130,3 +130,96 @@
 .primary-btn:hover {
     opacity: 0.9;
 }
+
+.LoginForm .input-group {
+    position: relative;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.LoginForm .input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.LoginForm .input-group label {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff; 
+    padding: 0 6px;
+    color: #9ca3af;
+    transition: 0.2s ease all;
+    pointer-events: none;
+    font-size: 0.95rem;
+}
+
+.LoginForm .input-group input:focus ~ label,
+.LoginForm .input-group input:valid ~ label {
+    top: 0;
+    font-size: 0.8rem;
+    color: #4f46e5; 
+    font-weight: 500;
+}
+
+.LoginForm .input-group input:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.forgot-link-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -12px;
+    margin-bottom: 20px; 
+}
+
+.forgot-password-link {
+    color: #4f46e5;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.forgot-password-link:hover {
+    color: #4338ca;
+    text-decoration: underline;
+}
+
+.form-subtitle {
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.5;
+    margin-top: 6px;
+    margin-bottom: 28px; 
+}
+
+.form-subtitle strong {
+    color: #1f2937;
+}
+
+.back-to-login-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    width: 100%;
+}
+
+.back-to-login-btn:hover {
+    color: #111827;
+}

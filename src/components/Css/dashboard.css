@@ -48,3 +48,16 @@
 .purple { background: #8b5cf6; }
 .green { background: #22c55e; }
 .orange { background: #f97316; }
+
+.dashboard-date {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #777;
+}
+
+.card-text small {
+    display: block;
+    margin-top: 5px;
+    color: #888;
+    font-size: 12px;
+}

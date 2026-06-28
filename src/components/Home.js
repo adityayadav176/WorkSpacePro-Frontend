@@ -15,9 +15,17 @@ function Home() {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const today = new Date();
+
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
   const Today = new Date().toDateString();
   const completedTask = task?.filter(t => t.status === "completed").length || 0;
-  const todayNotes = notes?.filter(note => new Date(note.date).toDateString() === Today).length;
+  const todayNotes = notes?.filter(note => new Date(note.createdAt).toDateString() === Today).length;
   const totalItems = task.length + notes.length;
   const productivity = totalItems === 0 ? 0 : Math.round(((completedTask + todayNotes) / totalItems) * 100);
 
@@ -28,6 +36,9 @@ function Home() {
         <div className="tasks-nav">
           <h2>Dashboard Overview</h2>
           <p>Monitor your productivity and activity</p>
+          <p className="dashboard-date">
+            <i className="fa-regular fa-calendar-days"></i> {formattedDate}
+          </p>
         </div>
       </div>
       <div className="dashboard-cards">
@@ -67,11 +78,15 @@ function Home() {
         <div className="card">
           <div className="card-text">
             <p>Productivity</p>
-            <h2>{`${productivity} %`}</h2>
+            <h2>{productivity}%</h2>
+            <small>
+              Based on today's completed tasks
+              <br />
+              and notes created today.
+            </small>
           </div>
           <div className="icon orange">
-            <i className=
-              "fa-solid fa-chart-column"></i>
+            <i className="fa-solid fa-chart-column"></i>
           </div>
         </div>
 

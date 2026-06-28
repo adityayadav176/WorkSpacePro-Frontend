@@ -29,14 +29,6 @@
     background-color: #0952ed;
 }
 
-.task-container{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-    gap:2rem;
-    padding:0 2rem;
-    margin-bottom:2rem;
-}
-
 .empty-task-wrapper{
     width:100%;
     min-height:65vh;
